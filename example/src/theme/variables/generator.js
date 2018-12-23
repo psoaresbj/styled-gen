@@ -7,7 +7,7 @@ import { padding, margin, position, size } from 'polished';
 // or
 // <MyComp primary="md" />
 const namedProps = [
-    { suffix: '', list: 'colors', cssProp: 'color', units: ''},
+    { list: 'colors', cssProp: 'color', units: ''},
     { suffix: 'bg', list: 'colors', cssProp: 'background-color', units: ''},
     { suffix: '', list: 'fonts.weights', cssProp: 'font-weight', units: ''},
     { suffix: '', list: 'fonts.sizes', cssProp: 'font-size', units: 'px'},
