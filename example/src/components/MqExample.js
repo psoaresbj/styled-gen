@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { mq } from 'styled-set'
+import { mq } from 'styled-gen'
 
 const MyStyledComponent = styled.div`
     background-color: #f4f4f4;

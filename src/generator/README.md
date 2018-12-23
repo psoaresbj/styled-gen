@@ -174,7 +174,7 @@ const App = () => (
 ```jsx
 import React from 'react'
 import styled from 'styled-components'
-import { generateProps } from 'styled-set'
+import { generateProps } from 'styled-gen'
 
 /*
   regular css prop: value;

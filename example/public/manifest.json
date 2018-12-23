@@ -1,6 +1,6 @@
 {
-  "short_name": "styled-set",
-  "name": "styled-set",
+  "short_name": "styled-gen",
+  "name": "styled-gen",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",

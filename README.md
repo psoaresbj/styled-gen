@@ -1,19 +1,19 @@
-# styled-set
+# styled-gen
 
 > Set of tools for styled-components
 
-[![NPM](https://img.shields.io/npm/v/styled-set.svg)](https://www.npmjs.com/package/styled-set) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/styled-gen.svg)](https://www.npmjs.com/package/styled-gen) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save styled-set
+npm install --save styled-gen
 ```
 
 or
 
 ```bash
-yarn add styled-set
+yarn add styled-gen
 ```
 
 ## Usage

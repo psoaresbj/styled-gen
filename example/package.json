@@ -1,6 +1,6 @@
 {
-  "name": "styled-set-example",
-  "homepage": "https://psoaresbj.github.io/styled-set",
+  "name": "styled-gen-example",
+  "homepage": "https://psoaresbj.github.io/styled-gen",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -11,7 +11,7 @@
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
     "styled-components": "^4.1.3",
-    "styled-set": "link:.."
+    "styled-gen": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",

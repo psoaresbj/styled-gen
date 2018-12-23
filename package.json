@@ -1,10 +1,10 @@
 {
-  "name": "styled-set",
+  "name": "styled-gen",
   "version": "1.0.0",
   "description": "Set of tools for styled-components",
   "author": "psoaresbj",
   "license": "MIT",
-  "repository": "psoaresbj/styled-set",
+  "repository": "psoaresbj/styled-gen",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",

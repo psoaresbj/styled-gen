@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { generateProps } from 'styled-set';
+import { generateProps } from 'styled-gen';
 
 
 const Div = styled.div`
