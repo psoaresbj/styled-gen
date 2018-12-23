@@ -58,7 +58,7 @@ const generator = {
 
     // usecase:
     // <MyComp sm />
-    { list: 'fonts.sizes', cssProp: 'font-size', units: 'px }
+    { list: 'fonts.sizes', cssProp: 'font-size', units: 'px' }
   ],
 
   /*

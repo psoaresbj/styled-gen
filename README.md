@@ -21,7 +21,6 @@ yarn add styled-set
 This set have multiple helpers. Please check each readme for usage instructions:
 
 - [mq](src/mq)
-
 - [generator](src/generator)
 
 ## Todo
