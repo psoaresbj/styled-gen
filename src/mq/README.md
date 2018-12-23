@@ -43,7 +43,7 @@ const App = () => (
 )
 ```
 
-2. Use it in width your styled components
+2. Use it in with your styled components
 
 ```jsx
 import React from 'react'
