@@ -1,6 +1,6 @@
 {
   "name": "styled-set",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Set of tools for styled-components",
   "author": "psoaresbj",
   "license": "MIT",
@@ -12,6 +12,12 @@
     "node": ">=8",
     "npm": ">=5"
   },
+  "keywords": [
+    "styled-components",
+    "react",
+    "css",
+    "styling"
+  ],
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
@@ -24,7 +30,8 @@
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "styled-components": ">= 2"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
@@ -57,5 +64,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "camelcase-keys": "^5.0.0"
+  }
 }
