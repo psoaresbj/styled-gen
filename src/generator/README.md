@@ -1,5 +1,7 @@
 # generator
 
+> Generate style props for your styled components automatically
+
 ## Usage
 
 1. Create your `generator` variables
