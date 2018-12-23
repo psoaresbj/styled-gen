@@ -17,7 +17,7 @@ const cap = str => str.charAt(0).toUpperCase() + str.slice(1)
 //    suffix: string to form the prop to use. ex: colorPrimary
 //    units: string to add to the end of css value, if number. ex: px, rem, em, %
 // }
-const applyNamedProp = (props, { list, cssProp, suffix, units }) => {
+const applyNamedProp = (props, { list, cssProp, suffix = '', units }) => {
   // set the variables list
   const variables = getVariables(list, props.theme)
 
