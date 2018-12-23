@@ -1,7 +1,13 @@
-import ExampleComponent from './'
+import { generateProps, mq } from './'
 
-describe('ExampleComponent', () => {
+describe('generateProps exists', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(generateProps).toBeTruthy()
+  })
+})
+
+describe('mq exists', () => {
+  it('is truthy', () => {
+    expect(mq).toBeTruthy()
   })
 })
