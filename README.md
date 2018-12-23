@@ -10,21 +10,24 @@
 npm install --save styled-set
 ```
 
+or
+
+```bash
+yarn add styled-set
+```
+
 ## Usage
 
-```jsx
-import React, { Component } from 'react'
+This set have multiple helpers. Please check each readme for usage instructions:
 
-import MyComponent from 'styled-set'
+- [mq](src/mq)
 
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
-```
+- [generator](src/generator)
+
+## Todo
+
+- Font Importer
+- Variations Generator
 
 ## License
 
