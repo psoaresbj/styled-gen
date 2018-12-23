@@ -1,5 +1,7 @@
 # mq
 
+> Media queries helpers for your styled components
+
 ## Usage
 
 1. Set your app breakpoints and add it to your theme via styled-components `ThemeProvider`
