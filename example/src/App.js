@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
+import { ThemeProvider } from 'styled-components';
 
-import ExampleComponent from 'styled-set'
+import NamedPropsExample from './components/NamedPropsExample'
+import SpacePropsExample from './components/SpacePropsExample';
+import VariablePropsExample from './components/VariablePropsExample';
+import MqExample from './components/MqExample';
 
+import theme from './theme'
 export default class App extends Component {
   render () {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
+      <ThemeProvider theme={theme}>
+        <div>
+            <NamedPropsExample />
+            <SpacePropsExample />
+            <VariablePropsExample />
+            <MqExample />
+        </div>
+      </ThemeProvider>
     )
   }
 }
