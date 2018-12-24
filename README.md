@@ -23,10 +23,7 @@ This set have multiple helpers. Please check each readme for usage instructions:
 - [mq](src/mq)
 - [generator](src/generator)
 - [variations](src/variations)
-
-## Todo
-
-- Font Importer
+- [importFonts](src/importFonts)
 
 ## License
 

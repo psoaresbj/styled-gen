@@ -1,9 +1,20 @@
 const weights = {
+    thin: 100,
+    extralight: 200,
     light: 300,
     regular: 400,
+    medium: 500,
     semibold: 600,
     bold: 700,
-};
+}
+
+const families = {
+    sans: 'IBM Plex Sans',
+}
+
+const config = [
+    { family: 'IBM Plex Sans', folder: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }
+]
 
 const sizes = {
     sm: 14,
@@ -13,8 +24,11 @@ const sizes = {
 };
 
 const fonts = {
+    config,
+
     weights,
     sizes,
+    families
 };
 
 export default fonts

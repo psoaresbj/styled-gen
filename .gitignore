@@ -20,3 +20,6 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+example/src/fonts
+example/public/fonts
