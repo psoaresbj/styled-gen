@@ -13,7 +13,7 @@ const families = {
 }
 
 const config = [
-    { family: 'IBM Plex Sans', folder: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }
+    { family: 'IBM Plex Sans', path: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }
 ]
 
 const sizes = {
