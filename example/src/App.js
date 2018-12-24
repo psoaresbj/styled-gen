@@ -7,6 +7,7 @@ import VariablePropsExample from './components/VariablePropsExample';
 import MqExample from './components/MqExample';
 import VariantsExample from './components/VariantsExample';
 import FontsExample from './components/FontsExample';
+import TransitionsExample from './components/TransitionsExample';
 
 import theme from './theme'
 export default class App extends Component {
@@ -15,6 +16,7 @@ export default class App extends Component {
       <ThemeProvider theme={theme}>
         <div>
             <FontsExample />
+            <TransitionsExample />
             <VariantsExample />
             <NamedPropsExample />
             <SpacePropsExample />
