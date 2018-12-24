@@ -24,7 +24,14 @@ const theme = {
         // the defaults Woff and Woff2
         formats: ['woff2', 'ttf'],
         config: [
-            { family: 'IBM Plex Sans', folder: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }
+            // be sure you add the
+            // right path and prefix
+            // with this example we
+            // are importing:
+            //  IBM Plex Sans Light from `fonts/IBMPlexSans/IBMPlexSans-light.woff`
+            //  IBM Plex Sans Regular from `fonts/IBMPlexSans/IBMPlexSans-regular.woff`
+            //  IBM Plex Sans Bold from `fonts/IBMPlexSans/IBMPlexSans-bold.woff`
+            { family: 'IBM Plex Sans', path: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }
         ]
     }
 }
@@ -33,7 +40,7 @@ const App = () => (
     <ThemeProvider theme={theme}>
         <div>
             {/* app content */}
-        <div>
+        </div>
     </ThemeProvider>
 )
 ```
