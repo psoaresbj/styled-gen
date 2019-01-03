@@ -4,7 +4,7 @@
 
 ## Usage
 
-1. Set your app breakpoints and add it to your theme via styled-components `ThemeProvider`
+- Set your app breakpoints and add it to your theme via styled-components `ThemeProvider`
 
 ```jsx
 import React from 'react'
@@ -45,7 +45,7 @@ const App = () => (
 )
 ```
 
-2. Use it in with your styled components
+- Use it in with your styled components
 
 ```jsx
 import React from 'react'

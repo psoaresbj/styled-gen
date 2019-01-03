@@ -4,7 +4,7 @@
 
 ## Usage
 
-1. Set your font config array and formats (not required)
+- Set your font config array and formats (not required)
 
 ```jsx
 import React from 'react'
@@ -45,7 +45,7 @@ const App = () => (
 )
 ```
 
-1. Use it in your global style component (you should have one)
+- Use it in your global style component (you should have one)
 
 ```jsx
 // GlobalStyle.js

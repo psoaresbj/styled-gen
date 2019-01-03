@@ -4,7 +4,7 @@
 
 ## Usage
 
-1. Create your `generator` variables
+- Create your `generator` variables
 
 ```javascript
 // generator.js
@@ -149,7 +149,7 @@ const generator = {
 export default generator
 ```
 
-1. Add your `generator` via styled-components `ThemeProvider`.
+- Add your `generator` via styled-components `ThemeProvider`.
 
 ```jsx
 import generator from './generator.js'
@@ -171,7 +171,7 @@ const App = () => (
 )
 ```
 
-1. Use it in your styled components
+- Use it in your styled components
 
 ```jsx
 import React from 'react'

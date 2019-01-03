@@ -4,7 +4,7 @@
 
 ## Usage
 
-1. create your variations for your styled components
+- create your variations for your styled components
 
 ```jsx
 import styled, { css } from 'styled-components'
@@ -69,7 +69,7 @@ const Button = styled.button`
 `
 ```
 
-1. Use them as props
+- Use them as props
 
 ```jsx
 render() {
