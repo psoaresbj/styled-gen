@@ -50,9 +50,9 @@ const getProp = ({ list, key, units }) => {
   // else
   // just iterates all over again
   } else {
-    getProp({
+    return getProp({
       // passes the same list
-      list,
+      list: list[keys[0]],
 
       // removes the first key and
       // passes the rest to the next
