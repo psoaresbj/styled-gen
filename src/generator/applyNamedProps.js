@@ -14,10 +14,10 @@ const cap = str => str.charAt(0).toUpperCase() + str.slice(1)
 // {
 //    list: the list of variables (if string will try to fetch theme[list])
 //    cssProp: string. ex: color, background-color, font-family
-//    suffix: string to form the prop to use. ex: colorPrimary
+//    prefix: string to form the prop to use. ex: colorPrimary
 //    units: string to add to the end of css value, if number. ex: px, rem, em, %
 // }
-const applyNamedProp = (props, { list, cssProp, suffix = '', units }) => {
+const applyNamedProp = (props, { list, cssProp, prefix = '', units }) => {
   // set the variables list
   const variables = getVariables(list, props.theme)
 
@@ -33,7 +33,7 @@ const applyNamedProp = (props, { list, cssProp, suffix = '', units }) => {
   // sets an array
   // with matched props
   // from the variables list
-  let match = Object.keys(variables).filter(variable => propKeys.find(prop => `${prop}` === `${suffix}${suffix ? cap(variable) : variable}`))
+  let match = Object.keys(variables).filter(variable => propKeys.find(prop => `${prop}` === `${prefix}${prefix ? cap(variable) : variable}`))
 
   let parsedProps = null
 
@@ -44,7 +44,7 @@ const applyNamedProp = (props, { list, cssProp, suffix = '', units }) => {
   if (!match.length) {
     // try to find deep val
     parsedProps = parseNestedProps(variables)
-    match = Object.keys(parsedProps).filter(variable => propKeys.find(prop => `${prop}` === `${suffix}${suffix ? cap(variable) : variable}`))
+    match = Object.keys(parsedProps).filter(variable => propKeys.find(prop => `${prop}` === `${prefix}${prefix ? cap(variable) : variable}`))
 
     // if still there's no match
     // just returns null
@@ -57,7 +57,7 @@ const applyNamedProp = (props, { list, cssProp, suffix = '', units }) => {
   const matchIndex = match.length - 1
 
   // sets the propName
-  const propName = `${suffix}${suffix ? cap(match[matchIndex]) : match[matchIndex]}`
+  const propName = `${prefix}${prefix ? cap(match[matchIndex]) : match[matchIndex]}`
 
   // sets the prop value
   const propVal = props[propName]
