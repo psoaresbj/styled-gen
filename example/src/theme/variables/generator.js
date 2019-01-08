@@ -7,10 +7,10 @@ import { padding, margin, position, size } from 'polished';
 // or
 // <MyComp primary="md" />
 const namedProps = [
-    { list: 'colors', cssProp: 'color', units: ''},
-    { suffix: 'bg', list: 'colors', cssProp: 'background-color', units: ''},
-    { suffix: '', list: 'fonts.weights', cssProp: 'font-weight', units: ''},
-    { suffix: '', list: 'fonts.sizes', cssProp: 'font-size', units: 'px'},
+    { list: 'colors', cssProp: 'color' },
+    { prefix: 'bg', list: 'colors', cssProp: 'background-color' },
+    { list: 'fonts.weights', cssProp: 'font-weight' },
+    { list: 'fonts.sizes', cssProp: 'font-size', units: 'px'},
 ];
 
 // sets space properties to
