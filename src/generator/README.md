@@ -27,7 +27,7 @@ const generator = {
     set your own breakpoints)
 
     object properties:
-      - suffix: string
+      - prefix: string
         A string to be added before
         a named prop
 
@@ -52,7 +52,7 @@ const generator = {
 
     // usecase:
     // <MyComp bgPrimary />
-    { suffix: 'bg', list: 'colors', cssProp: 'background-color' },
+    { prefix: 'bg', list: 'colors', cssProp: 'background-color' },
 
     // usecase:
     // <MyComp bold />
