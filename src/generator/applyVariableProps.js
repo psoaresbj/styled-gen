@@ -4,6 +4,7 @@ import getVariables from './getVariables'
 import mq, { getBps } from '../mq'
 
 const nulify = val => val === 'null' || val === 'undefined' || val === 'false' ? null : val
+const isNotValid = val => val === undefined || val === null || val === false || nulify(val) === null
 
 // arguments
 // props: obj that cames from component
@@ -28,7 +29,7 @@ const applyVariableProp = (props, {name, list, helperFn, cssProp, units}) => {
   const setCss = propVal => {
     // if no val, just
     // returns null
-    if (!propVal) { return null }
+    if (isNotValid(propVal)) { return null }
 
     // check if the val is a string
     // or if splitted, have more than
