@@ -19,7 +19,7 @@ const fontFace = ({ family, weight, style, src }) => css`
 const defaultFormats = ['woff', 'woff2']
 
 const importFont = (font, fontFormats) => {
-  const { family, path, prefix, weights } = font
+  const { family, path, prefix, weights, localLoading } = font
 
   // if fontFormats is undefined
   // uses defaultFormats
@@ -37,7 +37,7 @@ const importFont = (font, fontFormats) => {
       src: formats.reduce(
         (acc, format) => [
           ...acc,
-          `local("${family} ${cap(weight)}"), local("${prefix}${weight}"), url("${path}/${prefix}${weight}.${format}") format("${format}")`
+          `${localLoading ? `local("${family} ${cap(weight)}"), local("${prefix}${weight}"), ` : ' '}url("${path}/${prefix}${weight}.${format}") format("${format}")`
         ], []).join(',\n')
     })
   )
