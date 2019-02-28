@@ -26,12 +26,17 @@ const theme = {
         config: [
             // be sure you add the
             // right path and prefix
+            // and if you want your
+            // app try to get fonts
+            // locally, just add
+            // localLoading opt
+            //
             // with this example we
             // are importing:
             //  IBM Plex Sans Light from `fonts/IBMPlexSans/IBMPlexSans-light.woff`
             //  IBM Plex Sans Regular from `fonts/IBMPlexSans/IBMPlexSans-regular.woff`
             //  IBM Plex Sans Bold from `fonts/IBMPlexSans/IBMPlexSans-bold.woff`
-            { family: 'IBM Plex Sans', path: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }
+            { family: 'IBM Plex Sans', path: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights, localLoading: true }
         ]
     }
 }
