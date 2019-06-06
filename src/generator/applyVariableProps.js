@@ -99,19 +99,18 @@ const applyVariableProp = (props, {name, list, helperFn, cssProp, units}) => {
 
   // sets the theme breakpoints keys
   const bpKeys = Object.keys(breakpoints)
-
   // reduce the prop breakpoints returning a
   // parsed arr to be iterated
   const bps = propKeys.reduce((acc, bp) => {
     const breakpoint = bpKeys.find(b => bp === b)
     return breakpoint
-      ? [...acc, { breakpoint, prop: props[name][bp] }]
+      ? [...acc, { breakpoint: breakpoints[breakpoint], prop: props[name][bp] }]
       : acc
   }, [])
 
   // returns the setCss with breakpoints
   return bps.length
-    ? bps.reduce((acc, bp) => ([
+    ? bps.sort((a, b) => a.breakpoint - b.breakpoint).reduce((acc, bp) => ([
       ...acc,
       mq.from(bp.breakpoint, setCss(bp.prop))
     ]), [])
