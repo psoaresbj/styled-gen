@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.7](https://github.com/psoaresbj/styled-gen/releases/tag/1.3.7) (2019-06-08)
+- Fix querystringify vulnerability [\#13](https://github.com/psoaresbj/styled-gen/pull/13) ([psoaresbj](https://github.com/psoaresbj))
+
 ## [1.3.6](https://github.com/psoaresbj/styled-gen/releases/tag/1.3.6) (2019-06-06)
 - Fix breakpoints sorting [\#12](https://github.com/psoaresbj/styled-gen/pull/12) ([psoaresbj](https://github.com/psoaresbj))
 - Add local font loading option and validation [\#11](https://github.com/psoaresbj/styled-gen/pull/11) ([psoaresbj](https://github.com/psoaresbj))
