@@ -1,4 +1,4 @@
-import camelcase from 'camelcase-keys'
+import { camelcase } from '../helpers/camelcase'
 
 const flatten = (objectOrArray, prefix = '') => {
   const nestElement = (prev, value, key) => (value && typeof value === 'object'

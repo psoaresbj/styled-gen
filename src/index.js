@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 import generateProps from './generator'
 import mq from './mq'
 import variations from './variations'
