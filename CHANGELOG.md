@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.8](https://github.com/psoaresbj/styled-gen/releases/tag/1.3.8) (2019-06-25)
+- Add support for ie >= 10 [\#14](https://github.com/psoaresbj/styled-gen/pull/14) ([psoaresbj](https://github.com/psoaresbj))
+
 ## [1.3.7](https://github.com/psoaresbj/styled-gen/releases/tag/1.3.7) (2019-06-08)
 - Fix querystringify vulnerability [\#13](https://github.com/psoaresbj/styled-gen/pull/13) ([psoaresbj](https://github.com/psoaresbj))
 
