@@ -1,4 +1,4 @@
-const ease = {
+export const ease = {
   inSine: 'cubic-bezier(0.47, 0, 0.745, 0.715)',
   outSine: 'cubic-bezier(0.39, 0.575, 0.565, 1)',
   inOutSine: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
@@ -24,5 +24,3 @@ const ease = {
   outBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
   inOutBack: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 }
-
-export default ease
