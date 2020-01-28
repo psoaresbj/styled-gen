@@ -1,14 +1,13 @@
 import 'babel-polyfill'
 
 import generateProps from './generator'
-import mq from './mq'
 import importFonts from './importFonts'
 
 export {
   generateProps,
-  mq,
   importFonts
 }
 
+export * from './mq'
 export * from './transitions'
 export * from './variations'

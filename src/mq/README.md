@@ -32,16 +32,16 @@ import { ThemeProvider } from 'styled'
 const breakpoints = { sm: 50, tv: 80 };
 
 const theme = {
-    colors: { red: '#a5000', green: '##008b00' };
-    breakpoints,
+  colors: { red: '#a5000', green: '##008b00' };
+  breakpoints,
 }
 
 const App = () => (
-    <ThemeProvider theme={theme}>
-        <div>
-            {/* app content */}
-        </div>
-    </ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <div>
+      {/* app content */}
+    </div>
+  </ThemeProvider>
 )
 ```
 
@@ -59,21 +59,21 @@ import { css } from 'styled'
 import mq from 'styled-helper-mq'
 
 const MyStyledComponent = styled.div`
-    font-size: 16px;
+  font-size: 16px;
 
-    ${mq.between('tablet', 'tv', css`
-        font-size: 200px;
-    `)}
+  ${mq.between('tablet', 'tv', css`
+    font-size: 200px;
+  `)}
 
-    ${mq.desktop(css`
-        font-size: 20px;
-    `)}
+  ${mq.desktop(css`
+    font-size: 20px;
+  `)}
 `
 
 const App = () => (
-    <MyStyledComponent>
-        this text will change on window resize XD
-    </MyStyledComponent>
+  <MyStyledComponent>
+    this text will change on window resize XD
+  </MyStyledComponent>
 )
 ```
 

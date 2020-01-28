@@ -1,7 +1,7 @@
 import getProp from './getProp'
 import setCssProp from './setCssProp'
 import getVariables from './getVariables'
-import mq, { getBps } from '../mq'
+import { mq, getBps } from '../mq'
 
 const nulify = val => val === 'null' || val === 'undefined' || val === 'false' ? null : val
 const isNotValid = val => val === undefined || val === null || val === false || nulify(val) === null

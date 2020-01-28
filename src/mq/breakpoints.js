@@ -1,4 +1,4 @@
-const breakpoints = {
+export const breakpoints = {
   xs: 0,
   sm: 48, // 768
   md: 64, // 1024
@@ -10,5 +10,3 @@ const breakpoints = {
   tabletLandscape: 64,
   desktop: 76
 }
-
-export default breakpoints
