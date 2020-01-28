@@ -43,13 +43,13 @@ import { transitions } from 'styled-gen'
 //     via ThemeProvider
 
 const Btn = styled.button`
-    font-size: 20px;
+  font-size: 20px;
 
-    ${transitions('color', 'hover', 'inOutCubic')};
+  ${transitions('color', 'hover', 'inOutCubic')};
 
-    &:hover {
-        color: ${({theme}) => theme.colors.blue};
-    }
+  &:hover {
+    color: ${({theme}) => theme.colors.blue};
+  }
 `
 ```
 

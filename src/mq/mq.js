@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import getBps from './getBps'
+import { getBps } from './getBps'
 
 const getBp = (bp, props, options) => {
   const bps = getBps(props)
@@ -12,7 +12,7 @@ const getBp = (bp, props, options) => {
         : '100%'
 }
 
-const mq = {
+export const mq = {
   upTo: (bp, style) => css`
     ${(props) => css`
       @media only screen and (max-width: ${getBp(bp, props, {isMax: true})}) {
@@ -77,5 +77,3 @@ const mq = {
     `};
   `
 }
-
-export default mq

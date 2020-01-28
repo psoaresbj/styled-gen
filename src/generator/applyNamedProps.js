@@ -1,7 +1,7 @@
 import setCssProp from './setCssProp'
 import parseNestedProps from './parseNestedProps'
 import getVariables from './getVariables'
-import mq, { getBps } from '../mq'
+import { mq, getBps } from '../mq'
 
 // helper fn to return string with
 // first letter uppercased

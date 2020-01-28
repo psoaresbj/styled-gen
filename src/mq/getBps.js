@@ -1,7 +1,6 @@
-import breakpoints from './breakpoints'
+import { breakpoints } from './breakpoints'
+import lodash from 'lodash'
 
-const getBps = props => props && props.theme && props.theme.breakpoints
-  ? { ...breakpoints, ...props.theme.breakpoints }
-  : breakpoints
+const { get } = lodash
 
-export default getBps
+export const getBps = props => ({...breakpoints, ...get(props, 'theme.breakpoints', {})})
