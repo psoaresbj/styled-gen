@@ -65,5 +65,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "camelcase-keys": "^5.0.0",
+    "lodash": "^4.17.15"
+  }
 }

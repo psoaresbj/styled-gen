@@ -1,40 +1,16 @@
 import { css } from 'styled-components'
+import lodash from 'lodash'
+
+const { get } = lodash
 
 const getVariations = (props, variations) => {
-  // sets an array with all
-  // props
-  const propsArr = Object.keys(props)
-  // sets an array with all
-  // variations keys
-  const variationsArr = Object.keys(variations)
+  const variationName = Object.keys(variations)
+    .reduce((results, variation) => Object.keys(props)
+      .find(prop => props[variation] && prop === variation) || results, [])
 
-  // Check if there's any
-  // prop that match any
-  // variation obj key
-  // and returns that key
-  const variationName = variationsArr.reduce((acc, v) => propsArr.find(prop => props[v] && prop === v) || acc, [])
-
-  return variations[variationName]
-    // if there's a variation with
-    // the matched key returns it
-    ? variations[variationName]
-    // if there isn't any variation
-    // with the matched key
-    : variations.default
-      // if there's a `default`
-      // returns that
-      ? variations.default
-      // if there's any match
-      // returns null
-      : null
+  return get(variations, variationName) || get(variations, 'default', null)
 }
 
-// wrapping the getVariations
-// in the styled component css
-// helper fn to access the
-// component props
-const variations = variations => css`
-    ${props => getVariations(props, variations)};
+export const variations = variations => css`
+  ${props => getVariations(props, variations)};
 `
-
-export default variations

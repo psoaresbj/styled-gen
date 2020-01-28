@@ -1,3 +1,1 @@
-import variations from './variations'
-
-export default variations
+export * from './variations'
