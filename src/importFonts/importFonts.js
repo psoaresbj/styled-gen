@@ -45,11 +45,9 @@ const importFont = (font, fontFormats) => {
 
 // iterares over the theme fonts config
 // property and returns importFont
-const importFonts = props => props &&
+export const importFonts = props => props &&
   props.theme &&
   props.theme.fonts &&
   props.theme.fonts.config &&
   props.theme.fonts.config.length &&
   props.theme.fonts.config.map(font => importFont(font, props.theme.fonts.formats))
-
-export default importFonts
