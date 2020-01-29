@@ -4,10 +4,8 @@ import applyNamedProps from './applyNamedProps'
 import applyVariableProps from './applyVariableProps'
 import applySpaceProps from './applySpaceProps'
 
-const generateProps = css`
+export const generateProps = css`
   ${applyNamedProps};
   ${applyVariableProps};
   ${applySpaceProps};
 `
-
-export default generateProps
