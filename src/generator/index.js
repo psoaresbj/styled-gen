@@ -1,3 +1,1 @@
-import generateProps from './generateProps'
-
-export default generateProps
+export * from './generateProps'

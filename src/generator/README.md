@@ -155,19 +155,19 @@ export default generator
 import generator from './generator.js'
 
 const theme = {
-    colors: { primary: '#50A2E2', greys: { light: '#f4f4f4' }},
-    spaces: { sm: 1, lg: 4 },
-    fonts: { sizes: { sm: 14, lg: 24 }},
+  colors: { primary: '#50A2E2', greys: { light: '#f4f4f4' }},
+  spaces: { sm: 1, lg: 4 },
+  fonts: { sizes: { sm: 14, lg: 24 }},
 
-    generator,
+  generator,
 }
 
 const App = () => (
-    <ThemeProvider theme={theme}>
-        <div>
-            {/* app content */}
-        </div>
-    </ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <div>
+      {/* app content */}
+    </div>
+  </ThemeProvider>
 )
 ```
 
