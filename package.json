@@ -25,7 +25,8 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
