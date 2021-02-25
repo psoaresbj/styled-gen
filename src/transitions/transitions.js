@@ -1,3 +1,4 @@
+import { css } from '../helpers/css';
 import { durations } from './durations';
 import { ease as eases } from './ease';
 
@@ -20,6 +21,6 @@ const setTransitions = (props, { cssProps, duration, ease }) =>
     ? cssProps.map(cssProp => transition(props, { cssProps: cssProp, duration, ease })).join(', ')
     : transition(props, { cssProps, duration, ease });
 
-export const transitions = (cssProps, duration, ease) => props => `
+export const transitions = (cssProps, duration, ease) => props => css`
   transition: ${setTransitions(props, { cssProps, duration, ease })};
 `;

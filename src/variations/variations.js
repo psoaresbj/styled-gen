@@ -1,3 +1,5 @@
+import { css } from '../helpers/css';
+
 const getVariations = (props, variations) => {
   const variationName = Object.keys(variations).reduce(
     (results, variation) => Object.keys(props).find(prop => props[variation] && prop === variation) || results,
@@ -7,6 +9,6 @@ const getVariations = (props, variations) => {
   return variations[variationName] || variations?.default || null;
 };
 
-export const variations = variations => props => `
+export const variations = variations => props => css`
   ${getVariations(props, variations)};
 `;
