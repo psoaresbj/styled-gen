@@ -1,8 +1,9 @@
 import { cap } from '../helpers/cap';
+import { css } from '../helpers/css';
 
 // helper fn that returs
 // a css font-face string
-const fontFace = ({ family, weight, style, src }) => `
+const fontFace = ({ family, weight, style, src }) => css`
   @font-face {
     font-family: ${family};
     font-weight: ${weight};

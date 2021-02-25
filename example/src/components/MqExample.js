@@ -1,4 +1,5 @@
 import { mq } from 'styled-gen';
+import Hidden from '../theme/elements/Hidden';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -31,6 +32,9 @@ const VariablePropsExample = () => (
         <li>between tablet landscape and desktop: 16px again;</li>
         <li>from desktop will be 24px;</li>
       </ul>
+      <Hidden>
+        <p>This content will be hidden in tablet portrait bp</p>
+      </Hidden>
     </MyStyledComponent>
   </>
 );
