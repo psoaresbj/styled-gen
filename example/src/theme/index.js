@@ -1,19 +1,13 @@
-import colors from './variables/colors'
-import fonts from './variables/fonts'
-import generator from './variables/generator'
+import colors from './variables/colors';
+import fonts from './variables/fonts';
+import generator from './variables/generator';
 
 const theme = {
-  generator,
-
   colors,
-  fonts
-}
+  fonts,
+  generator
+};
 
-export {
-  generator,
+export { colors, fonts, generator };
 
-  colors,
-  fonts
-}
-
-export default theme
+export default theme;

@@ -1,1 +1,1 @@
-export * from './variations'
+export * from './variations';

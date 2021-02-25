@@ -1,4 +1,5 @@
-import { padding, margin, position, size } from 'polished';
+/* eslint-disable sort-keys */
+import { margin, padding, position, size } from 'polished';
 
 // sets named properties
 // to be auto generated
@@ -7,10 +8,10 @@ import { padding, margin, position, size } from 'polished';
 // or
 // <MyComp primary="md" />
 const namedProps = [
-    { list: 'colors', cssProp: 'color' },
-    { prefix: 'bg', list: 'colors', cssProp: 'background-color' },
-    { list: 'fonts.weights', cssProp: 'font-weight' },
-    { list: 'fonts.sizes', cssProp: 'font-size', units: 'px'},
+  { list: 'colors', cssProp: 'color' },
+  { prefix: 'bg', list: 'colors', cssProp: 'background-color' },
+  { list: 'fonts.weights', cssProp: 'font-weight' },
+  { list: 'fonts.sizes', cssProp: 'font-size', units: 'px' }
 ];
 
 // sets space properties to
@@ -23,8 +24,8 @@ const namedProps = [
 // list: {small: 1, large: 5}
 // <MyComp ml="large" />
 const spaceProps = [
-    { prop: 'padding', list: '', units: 'px' },
-    { prop: 'margin', list: '', units: 'rem' },
+  { prop: 'padding', list: '', units: 'px' },
+  { prop: 'margin', list: '', units: 'rem' }
 ];
 
 // sets variables properties
@@ -40,21 +41,21 @@ const spaceProps = [
 // <MyComp padding="1 1 null" />
 // will add ${padding(1, 1, null)}
 const variableProps = [
-    // using css props
-    { name: 'color', list: 'colors', cssProp: 'color', units: '' },
-    { name: 'fontSize', list: 'fonts.sizes', cssProp: 'font-size', units: 'px' },
-    { name: 'display', cssProp: 'display' },
-    // using helper functions
-    { name: 'margin', helperFn: margin, units: 'rem' },
-    { name: 'padding', helperFn: padding, units: 'px' },
-    { name: 'position', helperFn: position , units: 'px' },
-    { name: 'size', helperFn: size, units: 'px' },
+  // using css props
+  { name: 'color', list: 'colors', cssProp: 'color', units: '' },
+  { name: 'fontSize', list: 'fonts.sizes', cssProp: 'font-size', units: 'px' },
+  { name: 'display', cssProp: 'display' },
+  // using helper functions
+  { name: 'margin', helperFn: margin, units: 'rem' },
+  { name: 'padding', helperFn: padding, units: 'px' },
+  { name: 'position', helperFn: position, units: 'px' },
+  { name: 'size', helperFn: size, units: 'px' }
 ];
 
 const generator = {
-    namedProps,
-    variableProps,
-    spaceProps,
+  namedProps,
+  variableProps,
+  spaceProps
 };
 
 export default generator;

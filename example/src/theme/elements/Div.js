@@ -1,9 +1,8 @@
-import styled from 'styled-components'
 import { generateProps } from 'styled-gen';
-
+import styled from 'styled-components';
 
 const Div = styled.div`
-    ${generateProps};
-`
+  ${generateProps};
+`;
 
 export default Div;

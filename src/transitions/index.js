@@ -1,3 +1,3 @@
-export * from './ease'
-export * from './durations'
-export * from './transitions'
+export * from './durations';
+export * from './ease';
+export * from './transitions';

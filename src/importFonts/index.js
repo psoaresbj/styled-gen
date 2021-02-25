@@ -1,1 +1,1 @@
-export * from './importFonts'
+export * from './importFonts';

@@ -1,11 +1,11 @@
-import { css } from 'styled-components'
+import { css } from '../helpers/css';
 
-import applyNamedProps from './applyNamedProps'
-import applyVariableProps from './applyVariableProps'
-import applySpaceProps from './applySpaceProps'
+import applyNamedProps from './applyNamedProps';
+import applySpaceProps from './applySpaceProps';
+import applyVariableProps from './applyVariableProps';
 
-export const generateProps = css`
+export const generateProps = props => css`
   ${applyNamedProps};
   ${applyVariableProps};
   ${applySpaceProps};
-`
+`;
