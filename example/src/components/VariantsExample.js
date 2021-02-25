@@ -1,23 +1,18 @@
-import React from 'react'
-
-import Div from '../theme/elements/Div'
-import Button from '../theme/elements/Button'
+import Button from '../theme/elements/Button';
+import Div from '../theme/elements/Div';
+import React from 'react';
 
 const VariantsExample = () => (
-    <React.Fragment>
-        <Div as="h1">Variants</Div>
-        <Div padding={50}>
-            <Button>
-                Default Button
-            </Button>
-            <Button small alternate>
-                Small alternate button
-            </Button>
-            <Button large>
-                Large Button
-            </Button>
-        </Div>
-    </React.Fragment>
-)
+  <>
+    <Div as="h1">Variants</Div>
+    <Div padding={50}>
+      <Button>Default Button</Button>
+      <Button small alternate>
+        Small alternate button
+      </Button>
+      <Button large>Large Button</Button>
+    </Div>
+  </>
+);
 
-export default VariantsExample
+export default VariantsExample;

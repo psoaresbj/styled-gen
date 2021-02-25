@@ -1,50 +1,50 @@
-import styled, { css } from 'styled-components'
-import { variations } from 'styled-gen'
+import { variations } from 'styled-gen';
+import styled, { css } from 'styled-components';
 
 const btnSizes = {
-    small: css`
-        font-size: 16px;
-        padding: 8px 24px;
-    `,
+  default: css`
+    font-size: 20px;
+    padding: 18px 32px;
+  `,
 
-    default: css`
-        font-size: 20px;
-        padding: 18px 32px;
-    `,
+  large: css`
+    font-size: 28px;
+    padding: 24px 48px;
+  `,
 
-    large: css`
-        font-size: 28px;
-        padding: 24px 48px;
-    `,
+  small: css`
+    font-size: 16px;
+    padding: 8px 24px;
+  `
 };
 
 const btnColors = {
-    alternate: css`
-        background-color: ${({theme}) => theme.colors.red};
-    `
-}
+  alternate: css`
+    background-color: ${({ theme }) => theme.colors.red};
+  `
+};
 
 const Button = styled.button`
-    cursor: pointer;
-    outline: 0;
-    box-shadow: 0;
-    border: 0;
-    border-radius: 3px;
-    padding: 5px 20px;
-    font-size: 20;
-    background-color: ${({theme}) => theme.colors.blue};
-    color: ${({theme}) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.blue};
+  border-radius: 3px;
+  border: 0;
+  box-shadow: 0;
+  color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+  font-size: 20;
+  outline: 0;
+  padding: 5px 20px;
 
-    & + & {
-        margin-left: 2rem;
-    }
+  & + & {
+    margin-left: 2rem;
+  }
 
-    &:hover {
-        opacity: .75;
-    }
+  &:hover {
+    opacity: 0.75;
+  }
 
-    ${variations(btnColors)};
-    ${variations(btnSizes)};
-`
+  ${variations(btnColors)};
+  ${variations(btnSizes)};
+`;
 
 export default Button;

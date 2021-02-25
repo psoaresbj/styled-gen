@@ -1,34 +1,32 @@
 const weights = {
-    thin: 100,
-    extralight: 200,
-    light: 300,
-    regular: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-}
+  bold: 700,
+  extralight: 200,
+  light: 300,
+  medium: 500,
+  regular: 400,
+  semibold: 600,
+  thin: 100
+};
 
 const families = {
-    sans: 'IBM Plex Sans',
-}
+  sans: 'IBM Plex Sans'
+};
 
-const config = [
-    { family: 'IBM Plex Sans', path: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }
-]
+const config = [{ family: 'IBM Plex Sans', path: 'fonts/IBMPlexSans', prefix: 'IBMPlexSans-', weights }];
 
 const sizes = {
-    sm: 14,
-    base: 16,
-    lg: 18,
-    xxl: 30,
+  base: 16,
+  lg: 18,
+  sm: 14,
+  xxl: 30
 };
 
 const fonts = {
-    config,
+  config,
 
-    weights,
-    sizes,
-    families
+  families,
+  sizes,
+  weights
 };
 
-export default fonts
+export default fonts;

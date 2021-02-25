@@ -1,10 +1,10 @@
-import getProp from './getProp'
-import setCssProp from './setCssProp'
-import getVariables from './getVariables'
-import { mq, getBps } from '../mq'
+import { getBps, mq } from '../mq';
+import getProp from './getProp';
+import getVariables from './getVariables';
+import setCssProp from './setCssProp';
 
-const nulify = val => val === 'null' || val === 'undefined' || val === 'false' ? null : val
-const isNotValid = val => val === undefined || val === null || val === false || nulify(val) === null
+const nulify = val => (val === 'null' || val === 'undefined' || val === 'false' ? null : val);
+const isNotValid = val => val === undefined || val === null || val === false || nulify(val) === null;
 
 // arguments
 // props: obj that cames from component
@@ -16,20 +16,24 @@ const isNotValid = val => val === undefined || val === null || val === false || 
 //    cssProp: string. ex: color, background-color, font-family
 //    units: string to add to the end of css value, if number. ex: px, rem, em, %
 // }
-const applyVariableProp = (props, {name, list, helperFn, cssProp, units}) => {
+const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
   // check if props and name is being
   // passed and if prop exists
-  if ((!name || !props) || props[name] === undefined) { return }
+  if (!name || !props || props[name] === undefined) {
+    return;
+  }
 
   // sets the variables list
-  const variables = getVariables(list, props.theme)
+  const variables = getVariables(list, props.theme);
 
   // internal helper fn that
   // will be returned
   const setCss = propVal => {
     // if no val, just
     // returns null
-    if (isNotValid(propVal)) { return null }
+    if (isNotValid(propVal)) {
+      return null;
+    }
 
     // check if the val is a string
     // or if splitted, have more than
@@ -40,46 +44,29 @@ const applyVariableProp = (props, {name, list, helperFn, cssProp, units}) => {
     // [10, 0, null, 'auto']
     // if it's not multi arg, just return
     // the unchanged value
-    const prop = typeof propVal === 'string' && propVal.split(' ').length > 1
-      ? propVal.split(' ').map(p => nulify(p))
-      : propVal
+    const prop =
+      typeof propVal === 'string' && propVal.split(' ').length > 1 ? propVal.split(' ').map(p => nulify(p)) : propVal;
 
     // check if there's an helper
     // function with the prop name
-    const useFunction = !!helperFn && typeof helperFn === 'function'
+    const useFunction = !!helperFn && typeof helperFn === 'function';
 
-    return useFunction
-      // if there's a function
-      // with the name
-      // returns it
-      ? Array.isArray(prop)
-        // if the value is an array
-        // just add it to the function
-        // parsing them with units
-        ? helperFn(...prop.map(propArg => typeof +propArg === 'number' && propArg > 0 ? `${propArg}${units}` : propArg))
-        // if not array, just return
-        // prop, appending the units
-        // if the value is number
-        : helperFn(typeof +prop === 'number' ? `${+prop}${units}` : +prop)
-      // if no function
-      : typeof prop === 'number' || !variables
-        // if no variables or the value is
-        // number, returns setCssProp with
-        // unchanged val
+    if (!useFunction) {
+      return typeof prop === 'number' || !variables
         ? setCssProp(cssProp, prop, units)
-        // if value is a string and there's
-        // variables,returns setCssProp with
-        // function to try to get value from
-        // variables. In the end, if no variable
-        // returns the unchanged prop value
-        : setCssProp(cssProp, getProp({list: variables, key: prop, units}))
-  }
+        : setCssProp(cssProp, getProp({ key: prop, list: variables, units }));
+    }
+
+    return Array.isArray(prop)
+      ? helperFn(...prop.map(propArg => (typeof +propArg === 'number' && propArg > 0 ? `${propArg}${units}` : propArg)))
+      : helperFn(typeof +prop === 'number' ? `${+prop}${units}` : +prop);
+  };
 
   // check if the value of the prop
   // is string or number and if yes,
   // returns the internal setCss fn
   if (typeof props[name] === 'string' || typeof props[name] === 'number') {
-    return setCss(props[name])
+    return setCss(props[name]);
   }
 
   // if the value is not a string, number
@@ -91,42 +78,39 @@ const applyVariableProp = (props, {name, list, helperFn, cssProp, units}) => {
   }
 
   // sets the prop breakpoints keys
-  const propKeys = Object.keys(props[name])
+  const propKeys = Object.keys(props[name]);
 
   // get breakpoints using
   // styled-helper-mq breakpoint fn
-  const breakpoints = getBps(props)
+  const breakpoints = getBps(props);
 
   // sets the theme breakpoints keys
-  const bpKeys = Object.keys(breakpoints)
+  const bpKeys = Object.keys(breakpoints);
   // reduce the prop breakpoints returning a
   // parsed arr to be iterated
   const bps = propKeys.reduce((acc, bp) => {
-    const breakpoint = bpKeys.find(b => bp === b)
-    return breakpoint
-      ? [...acc, { breakpoint: breakpoints[breakpoint], prop: props[name][bp] }]
-      : acc
-  }, [])
+    const breakpoint = bpKeys.find(b => bp === b);
+
+    return breakpoint ? [...acc, { breakpoint: breakpoints[breakpoint], prop: props[name][bp] }] : acc;
+  }, []);
 
   // returns the setCss with breakpoints
   return bps.length
-    ? bps.sort((a, b) => a.breakpoint - b.breakpoint).reduce((acc, bp) => ([
-      ...acc,
-      mq.from(bp.breakpoint, setCss(bp.prop))
-    ]), [])
-    : null
-}
+    ? bps
+        .sort((a, b) => a.breakpoint - b.breakpoint)
+        .reduce((acc, bp) => [...acc, mq.from(bp.breakpoint, setCss(bp.prop))], [])
+    : null;
+};
 
 // iterates over the
 // variable props config
-const applyVariableProps = props => !!props &&
-!!props.theme &&
-!!props.theme.generator &&
-!!props.theme.generator.variableProps &&
-props.theme.generator.variableProps.map(variableProp => applyVariableProp(props, variableProp))
+const applyVariableProps = props =>
+  !!props &&
+  !!props.theme &&
+  !!props.theme.generator &&
+  !!props.theme.generator.variableProps &&
+  props.theme.generator.variableProps.map(variableProp => applyVariableProp(props, variableProp));
 
-export {
-  applyVariableProp
-}
+export { applyVariableProp };
 
-export default applyVariableProps
+export default applyVariableProps;

@@ -1,1 +1,1 @@
-export * from './generateProps'
+export * from './generateProps';
