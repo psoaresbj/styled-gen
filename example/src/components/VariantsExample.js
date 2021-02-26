@@ -10,7 +10,9 @@ const VariantsExample = () => (
       <Button small alternate>
         Small alternate button
       </Button>
-      <Button large>Large Button</Button>
+      <Button large withFn isRed>
+        Large Button
+      </Button>
     </Div>
   </>
 );
