@@ -1,6 +1,6 @@
 {
   "name": "styled-gen",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Set of tools for css in js libs",
   "author": "psoaresbj",
   "license": "MIT",
@@ -38,6 +38,7 @@
     "@rollup/plugin-replace": "^2.4.1",
     "@rollup/plugin-url": "^6.0.0",
     "@svgr/rollup": "^5.5.0",
+    "auto-changelog": "^2.2.1",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.20.0",
