@@ -1,5 +1,4 @@
 import { variations } from 'styled-gen';
-// import colors from '../variables/colors';
 import styled, { css } from 'styled-components';
 
 const btnSizes = {
@@ -26,6 +25,15 @@ const btnColors = {
 
   default: css`
     background-color: ${({ theme }) => theme.colors.blue};
+  `,
+
+  withFn: css`
+    ${({ isRed }) =>
+      isRed &&
+      css`
+        background-color: red;
+        color: blue;
+      `}
   `
 };
 
