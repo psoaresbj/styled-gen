@@ -1,21 +1,10 @@
 import { getBps, mq } from '../mq';
+import { isInvalid } from '../helpers/isInvalid';
+import { nulify } from '../helpers/nulify';
 import getProp from './getProp';
 import getVariables from './getVariables';
 import setCssProp from './setCssProp';
 
-const nulify = val => (val === 'null' || val === 'undefined' || val === 'false' ? null : val);
-const isNotValid = val => val === undefined || val === null || val === false || nulify(val) === null;
-
-// arguments
-// props: obj that cames from component
-// or may be added manually
-//
-// {
-//    name: string of the prop name
-//    list: the list of variables (if string will try to fetch theme[list])
-//    cssProp: string. ex: color, background-color, font-family
-//    units: string to add to the end of css value, if number. ex: px, rem, em, %
-// }
 const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
   // check if props and name is being
   // passed and if prop exists
@@ -31,7 +20,7 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
   const setCss = propVal => {
     // if no val, just
     // returns null
-    if (isNotValid(propVal)) {
+    if (isInvalid(propVal)) {
       return null;
     }
 
@@ -104,12 +93,15 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
 
 // iterates over the
 // variable props config
-const applyVariableProps = props =>
-  !!props &&
-  !!props.theme &&
-  !!props.theme.generator &&
-  !!props.theme.generator.variableProps &&
-  props.theme.generator.variableProps.map(variableProp => applyVariableProp(props, variableProp));
+const applyVariableProps = props => {
+  const variableProps = props?.theme?.generator?.variableProps;
+
+  if (!variableProps.length) {
+    return;
+  }
+
+  return variableProps.map(variableProp => applyVariableProp(props, variableProp));
+};
 
 export { applyVariableProp };
 

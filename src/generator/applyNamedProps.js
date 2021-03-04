@@ -1,33 +1,18 @@
+import { cap } from '../helpers/cap';
 import { getBps, mq } from '../mq';
 import getVariables from './getVariables';
 import parseNestedProps from './parseNestedProps';
 import setCssProp from './setCssProp';
 
-// helper fn to return string with
-// first letter uppercased
-const cap = str => str.charAt(0).toUpperCase() + str.slice(1);
+const applyNamedProp = (allProps, { list, cssProp, prefix = '', units }) => {
+  const { theme, ...props } = allProps;
 
-// arguments
-// props: obj that cames from component
-// or may be added manually
-//
-// {
-//    list: the list of variables (if string will try to fetch theme[list])
-//    cssProp: string. ex: color, background-color, font-family
-//    prefix: string to form the prop to use. ex: colorPrimary
-//    units: string to add to the end of css value, if number. ex: px, rem, em, %
-// }
-const applyNamedProp = (props, { list, cssProp, prefix = '', units }) => {
-  // set the variables list
-  const variables = getVariables(list, props.theme);
+  const variables = getVariables(list, theme);
 
-  // if no variables
-  // breaks
   if (!variables) {
     return null;
   }
 
-  // set array of prop keys
   const propKeys = Object.keys(props);
 
   // sets an array
@@ -50,28 +35,18 @@ const applyNamedProp = (props, { list, cssProp, prefix = '', units }) => {
       propKeys.find(prop => `${prop}` === `${prefix}${prefix ? cap(variable) : variable}`)
     );
 
-    // if still there's no match
-    // just returns null
     if (!match.length) {
-      return null;
+      return;
     }
   }
 
-  // sets the index of the filter
   const matchIndex = match.length - 1;
 
-  // sets the propName
   const propName = `${prefix}${prefix ? cap(match[matchIndex]) : match[matchIndex]}`;
-
-  // sets the prop value
   const propVal = props[propName];
-
-  // sets the css value to use
   const value = !parsedProps ? variables[match[matchIndex]] : parsedProps[match];
 
-  // get breakpoints using
-  // styled-helper-mq breakpoint fn
-  const breakpoints = getBps(props);
+  const breakpoints = getBps({ theme });
 
   // return the styled-component
   // css fn with the matched val
@@ -87,13 +62,14 @@ const applyNamedProp = (props, { list, cssProp, prefix = '', units }) => {
     : setCssProp(cssProp, value, units);
 };
 
-// iterates over the
-// named props config
-const applyNamedProps = props =>
-  !!props &&
-  !!props.theme &&
-  !!props.theme.generator &&
-  !!props.theme.generator.namedProps &&
-  props.theme.generator.namedProps.map(namedProp => applyNamedProp(props, namedProp));
+const applyNamedProps = props => {
+  const namedProps = props?.theme?.generator?.namedProps;
+
+  if (!namedProps.length) {
+    return;
+  }
+
+  return namedProps.map(namedProp => applyNamedProp(props, namedProp));
+};
 
 export default applyNamedProps;
