@@ -14,13 +14,19 @@ const applyNamedProp = (allProps, { list, cssProp, prefix = '', units }) => {
   }
 
   const propKeys = Object.keys(props);
+  const variableKeys = Object.keys(variables);
+  const withNestedProps = variableKeys.reduce((result, key) => result || typeof variables[key] === 'object', false);
 
   // sets an array
   // with matched props
   // from the variables list
-  let match = Object.keys(variables).filter(variable =>
+  let match = variableKeys.filter(variable =>
     propKeys.find(prop => `${prop}` === `${prefix}${prefix ? cap(variable) : variable}`)
   );
+
+  if (!match.length && !withNestedProps) {
+    return;
+  }
 
   let parsedProps = null;
 
