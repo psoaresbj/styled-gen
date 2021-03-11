@@ -28,7 +28,7 @@ const applySpaceProp = (allProps, { prop, list, units }) => {
 const applySpaceProps = props => {
   const spaceProps = props?.theme?.generator?.spaceProps;
 
-  if (!spaceProps.length) {
+  if (!spaceProps?.length) {
     return;
   }
 

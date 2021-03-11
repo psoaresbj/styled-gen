@@ -71,7 +71,7 @@ const applyNamedProp = (allProps, { list, cssProp, prefix = '', units }) => {
 const applyNamedProps = props => {
   const namedProps = props?.theme?.generator?.namedProps;
 
-  if (!namedProps.length) {
+  if (!namedProps?.length) {
     return;
   }
 
