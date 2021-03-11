@@ -8,7 +8,7 @@ export const generateProps = args => {
   delete args.children;
   const { theme, ...props } = args;
 
-  if (!Object.keys(props).length) {
+  if (!Object.keys(props).length || typeof props !== 'object') {
     return;
   }
 

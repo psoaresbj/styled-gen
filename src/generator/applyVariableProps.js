@@ -96,7 +96,7 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
 const applyVariableProps = props => {
   const variableProps = props?.theme?.generator?.variableProps;
 
-  if (!variableProps.length) {
+  if (!variableProps?.length) {
     return;
   }
 
