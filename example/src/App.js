@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import FontsExample from './components/FontsExample';
+import FunctionExample from './components/FunctionExample';
 import MqExample from './components/MqExample';
 import NamedPropsExample from './components/NamedPropsExample';
 import React, { Component } from 'react';
@@ -16,10 +17,11 @@ export default class App extends Component {
         <div>
           <FontsExample />
           <TransitionsExample />
-          <VariantsExample />
           <NamedPropsExample />
           <SpacePropsExample />
           <VariablePropsExample />
+          <FunctionExample />
+          <VariantsExample />
           <MqExample />
         </div>
       </ThemeProvider>

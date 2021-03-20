@@ -1,4 +1,5 @@
 /* eslint-disable sort-keys */
+import { flex } from '../helpers/flex';
 import { margin, padding, position, size } from 'polished';
 
 // sets named properties
@@ -46,6 +47,7 @@ const variableProps = [
   { name: 'fontSize', list: 'fonts.sizes', cssProp: 'font-size', units: 'px' },
   { name: 'display', cssProp: 'display' },
   // using helper functions
+  { name: 'flex', helperFn: flex },
   { name: 'margin', helperFn: margin, units: 'rem' },
   { name: 'padding', helperFn: padding, units: 'px' },
   { name: 'position', helperFn: position, units: 'px' },
