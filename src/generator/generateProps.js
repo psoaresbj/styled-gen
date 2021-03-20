@@ -25,6 +25,7 @@ export const generateProps = args => {
       typeof props[prop] === 'object' ||
       typeof props[prop] === 'string' ||
       typeof props[prop] === 'number' ||
+      typeof props[prop] === 'boolean' ||
       Array.isArray(props[prop])
         ? { ...acc, [prop]: props[prop] }
         : acc,

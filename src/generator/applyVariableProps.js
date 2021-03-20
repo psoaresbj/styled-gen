@@ -18,9 +18,13 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
   // internal helper fn that
   // will be returned
   const setCss = propVal => {
+    // check if there's an helper
+    // function with the prop name
+    const useFunction = !!helperFn && typeof helperFn === 'function';
+
     // if no val, just
     // returns null
-    if (isInvalid(propVal)) {
+    if (isInvalid(propVal) && !useFunction) {
       return null;
     }
 
@@ -36,10 +40,6 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
     const prop =
       typeof propVal === 'string' && propVal.split(' ').length > 1 ? propVal.split(' ').map(p => nulify(p)) : propVal;
 
-    // check if there's an helper
-    // function with the prop name
-    const useFunction = !!helperFn && typeof helperFn === 'function';
-
     if (!useFunction) {
       return typeof prop === 'number' || !variables
         ? setCssProp(cssProp, prop, units)
@@ -48,13 +48,13 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
 
     return Array.isArray(prop)
       ? helperFn(...prop.map(propArg => (typeof +propArg === 'number' && propArg > 0 ? `${propArg}${units}` : propArg)))
-      : helperFn(typeof +prop === 'number' ? `${+prop}${units}` : +prop);
+      : helperFn(typeof prop + 0 === 'number' ? `${+prop}${units}` : prop);
   };
 
   // check if the value of the prop
   // is string or number and if yes,
   // returns the internal setCss fn
-  if (typeof props[name] === 'string' || typeof props[name] === 'number') {
+  if (typeof props[name] === 'string' || typeof props[name] === 'number' || typeof props[name] === 'boolean') {
     return setCss(props[name]);
   }
 
