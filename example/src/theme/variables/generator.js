@@ -51,7 +51,7 @@ const variableProps = [
   { name: 'margin', helperFn: margin, units: 'rem' },
   { name: 'padding', helperFn: padding, units: 'px' },
   { name: 'position', helperFn: position, units: 'px' },
-  { name: 'size', helperFn: size, units: 'px' }
+  { name: 'size', helperFn: size, units: 'rem' }
 ];
 
 const generator = {

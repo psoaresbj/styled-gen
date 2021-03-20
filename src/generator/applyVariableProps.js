@@ -47,8 +47,24 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
     }
 
     return Array.isArray(prop)
-      ? helperFn(...prop.map(propArg => (typeof +propArg === 'number' && propArg > 0 ? `${propArg}${units}` : propArg)))
-      : helperFn(typeof prop + 0 === 'number' ? `${+prop}${units}` : prop);
+      ? helperFn(
+          ...prop.map(propArg =>
+            // eslint-disable-next-line no-nested-ternary
+            !Number.isNaN(+propArg) && propArg > 0 && typeof propArg !== 'boolean'
+              ? `${propArg}${units}`
+              : typeof propArg === 'boolean'
+              ? propArg
+              : undefined
+          )
+        )
+      : helperFn(
+          // eslint-disable-next-line no-nested-ternary
+          !Number.isNaN(+prop) && typeof prop !== 'boolean'
+            ? `${+prop}${units}`
+            : typeof prop === 'boolean'
+            ? null
+            : prop
+        );
   };
 
   // check if the value of the prop
