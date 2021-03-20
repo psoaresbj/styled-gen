@@ -53,8 +53,8 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
             !Number.isNaN(+propArg) && propArg > 0 && typeof propArg !== 'boolean'
               ? `${propArg}${units}`
               : typeof propArg === 'boolean'
-              ? propArg
-              : undefined
+              ? undefined
+              : propArg
           )
         )
       : helperFn(
@@ -62,7 +62,7 @@ const applyVariableProp = (props, { name, list, helperFn, cssProp, units }) => {
           !Number.isNaN(+prop) && typeof prop !== 'boolean'
             ? `${+prop}${units}`
             : typeof prop === 'boolean'
-            ? null
+            ? undefined
             : prop
         );
   };
