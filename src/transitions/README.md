@@ -1,6 +1,6 @@
 # transitions
 
-> Helper function to deal with css transition property
+> Helper function to deal with the CSS `transition` property
 
 ## Related files
 
@@ -16,31 +16,31 @@ import React from 'react'
 import styled from 'styled-components'
 import { transitions } from 'styled-gen'
 
-// transitions fn arguments:
-//   - cssProps: string or arr of strings
-//     with the css prop(s) that we want
-//     affect with transition
+// Arguments to the `transitions` function:
+//   - cssProps: string or array of strings
+//     with the CSS prop(s) that we want
+//     to affect with transition.
 //
-//   - duration: string or number
-//     if the string matches any
-//     of the `durations` keys
-//     sets that value (in ms)
+//   - duration: string or number.
+//     If the string matches any
+//     of the valid `durations` keys,
+//     this sets that value (in ms)
 //     as the duration. If a number
-//     is passed, then sets that
+//     is passed, then it sets that
 //     value (in ms).
-//     The durations obj can be extended
-//     with theme.durations obj passed
-//     via ThemeProvider
+//     The durations object can be extended
+//     with a `theme.durations` object
+//     passed via `ThemeProvider`.
 //
-//   - ease function: string
-//     if the string matches any
-//     of the `ease` keys
-//     sets that value
-//     as the ease fn. If not, just
-//     returns the string as it is.
-//     The ease object can be extended
-//     with theme.ease obj passed
-//     via ThemeProvider
+//   - ease function: string.
+//     If the string matches any
+//     of the valid `ease` keys,
+//     this sets that value
+//     as the ease function. If not,
+//     it just returns the string as it is.
+//     The `ease` object can be extended
+//     with a `theme.ease` object
+//     passed via `ThemeProvider`.
 
 const Btn = styled.button`
   font-size: 20px;

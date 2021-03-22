@@ -1,24 +1,24 @@
 # styled-gen
 
-> Set of tools for styled-components
+> Set of tools for [styled-components](https://styled-components.com/)
 
 [![NPM](https://img.shields.io/npm/v/styled-gen.svg)](https://www.npmjs.com/package/styled-gen) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+## Installation
 
-```bash
+```sh
 npm install --save styled-gen
 ```
 
 or
 
-```bash
+```sh
 yarn add styled-gen
 ```
 
 ## Usage
 
-This set have multiple helpers. Please check each readme for usage instructions:
+This set consists of several helpers. Please check the individual READMEs for usage instructions:
 
 - [mq](src/mq)
 - [generator](src/generator)
