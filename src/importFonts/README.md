@@ -4,7 +4,7 @@
 
 ## Usage
 
-- Set your font config array and formats (not required)
+Set your font `config` array, and (optionally) the `formats` array:
 
 ```jsx
 import React from 'react'
@@ -19,20 +19,15 @@ const theme = {
   fonts: {
     families: { sans: 'IBM Plex Sans' },
     sizes: { sm: 14, base: 16, lg: 18 },
-    // formats are optional
-    // the function will use
-    // the defaults Woff and Woff2
+    // The `formats` array is optional.
+    // The function will use Woff and Woff2 as defaults.
     formats: ['woff2', 'ttf'],
     config: [
-      // be sure you add the
-      // right path and prefix
-      // and if you want your
-      // app try to get fonts
-      // locally, just add
-      // localLoading opt
+      // Be sure that you add the right path and prefix.
+      // If you want your app try to get fonts locally,
+      // just set the `localLoading` option to `true`.
       //
-      // with this example we
-      // are importing:
+      // With this example, we are importing:
       //  IBM Plex Sans Light from `fonts/IBMPlexSans/IBMPlexSans-light.woff`
       //  IBM Plex Sans Regular from `fonts/IBMPlexSans/IBMPlexSans-regular.woff`
       //  IBM Plex Sans Bold from `fonts/IBMPlexSans/IBMPlexSans-bold.woff`
@@ -50,7 +45,7 @@ const App = () => (
 )
 ```
 
-- Use it in your global style component (you should have one)
+Use it in your global style component (you should have one):
 
 ```jsx
 // GlobalStyle.js

@@ -4,8 +4,8 @@
 
 ## Usage
 
-- Create your variations for your styled components
-- Add a default variation for when you don't pass any variation prop
+First, create your variations for your styled components.
+Add a default variation for when you don't pass any variation prop.
 
 ```jsx
 import styled, { css } from 'styled-components'
@@ -50,7 +50,7 @@ const Button = styled.button`
 `
 ```
 
-- Use them as props
+Then you can use the variations as props:
 
 ```jsx
 render() {
