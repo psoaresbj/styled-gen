@@ -1,0 +1,12 @@
+{
+  "extends": ["@psoares/eslint-config/typescript"],
+  "overrides": [
+    {
+      "files": ["example/**/*"],
+      "rules": {
+        "react/react-in-jsx-scope": 0
+      }
+    }
+  ],
+  "root": true
+}
