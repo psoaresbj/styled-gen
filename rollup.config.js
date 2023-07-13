@@ -1,32 +1,38 @@
-import babel from '@rollup/plugin-babel';
+import { terser } from 'rollup-plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
-import pkg from './package.json';
+import dts from 'rollup-plugin-dts';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
-import svgr from '@svgr/rollup';
-import url from '@rollup/plugin-url';
+import typescript from '@rollup/plugin-typescript';
 
-export default {
-  input: 'src/index.js',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true
-    }
-  ],
-  plugins: [
-    url(),
-    svgr(),
-    babel({
-      exclude: 'node_modules/**',
-      babelHelpers: 'bundled'
-    }),
-    resolve({ browser: true }),
-    commonjs()
-  ]
-};
+export default [
+  {
+    external: ['csstype'],
+    input: 'src/index.ts',
+    output: [
+      {
+        file: 'dist/cjs/index.js',
+        format: 'cjs',
+        sourcemap: true
+      },
+      {
+        exports: 'named',
+        file: 'dist/esm/index.js',
+        format: 'esm',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      peerDepsExternal(),
+      resolve(),
+      commonjs({ extensions: ['.js', '.ts'] }),
+      typescript({ tsconfig: './tsconfig.json' }),
+      terser()
+    ]
+  },
+  {
+    input: 'dist/esm/types/index.d.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+    plugins: [dts()]
+  }
+];
