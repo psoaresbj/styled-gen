@@ -1,0 +1,95 @@
+---
+title: Setup
+description: styled-gen setup.
+---
+
+## Setup
+
+1. Add to your `theme` object:
+  - A `breakpoints` object
+  - A `config` object (optional)
+  - A `generator` object
+2. Add your theme to `ThemeProvider` in your app
+
+Example:
+```javascript title="theme.js"
+// units: em
+const breakpoints = {
+  lg: 76,
+  md: 64,
+  sm: 48,
+  xs: 0
+};
+
+const colors = {
+  n01: '#f4f4f4',
+  n07: '#222222',
+  p01: '#50a2e2'
+}
+
+const generator = {
+  namedProps: [
+    { cssProp: 'color', list: colors }
+  ],
+
+  spaceProps: [
+    { prop: 'margin', units: 'px' }
+  ],
+
+  variableProps: [
+    { name: 'color', cssProp: 'color', list: colors }
+  ]
+}
+
+export const theme = {
+  breakpoints,
+  colors,
+  config: {
+    transientPrefix: '$'
+  },
+  generator
+}
+```
+
+```jsx title="App.js"
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
+
+export const App = () => (
+  <body>
+    <ThemeProvider theme={theme}>
+      {/* Your app content */}
+    </ThemeProvider>
+  </body>
+)
+```
+
+## Usage
+
+In this minimal example you can see `generatedProps` in usage.
+
+```jsx title="MyComponent.js"
+import { generateProps } from 'styled-gen';
+import styled from 'styled-components';
+
+const Div = styled.div`
+  position: relative;
+
+  ${generateProps};
+`;
+
+export const MyComponent = ({ children }) => (
+  <section>
+    {/* color: #50a2e2 */}
+    <Div $p01>
+      My awesome component
+    </Div>
+
+    {/* from `md` breakpoint, color: #222222 */}
+    {/* margin top from `xs` breakpoint: 16px, then from `md` breakpoint: 32px */}
+    <Div $color={{ md: 'n07' }} $mt={{ md: 32, xs: 16 }}>
+      {children}
+    </Div>
+  </section>
+)
+```

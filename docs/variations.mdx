@@ -1,0 +1,73 @@
+---
+title: variations
+description: Explanation and examples of variations.
+---
+
+## variations function
+
+The `variations` function acts as a namedProp for entire blocks of CSS. The value for the prop can be a boolean or an object with the following structure:
+```typescript
+{ from?: 'breakpoint', upTo?: 'breakpoint' }
+```
+
+### Arguments
+| Argument               | Type                                                       | Description                                       | Default value |
+| ---------------------- | ---------------------------------------------------------- | ------------------------------------------------- | ------------- |
+| `variants`             | `{ [key: string]: string } \| { [key: string]: string }[]` | An obj or an array of obj with the props and css. |               |
+| `useTransientPrefix`   | `boolean`                                                  | Enable or disable the transient prefix            | `true`        |
+
+In the variants object, you can use a default value, which will be used when no other prop matches. The styles from the same variant object will never stack.
+
+### Usage example
+
+(assuming we're using the config property `transientPrefix` as `'$'`):
+
+```jsx title="Button.js"
+import { variations } from 'styled-gen';
+import styled, { css } from 'styled-components';
+
+const colorVariants = {
+  default: css`
+    background-color: #50are2;
+    color: #ffffff;
+  `,
+
+  dark: css`
+    background-color: #222222;
+    color: #ffffff;
+  `,
+
+  light: css`
+    background-color: #cccccc;
+    color: #222222;
+  `,
+}
+
+export const Button = styled.button`
+  height: 44px;
+  padding: 8px 24px;
+
+  ${variations(colorVariants)};
+`;
+```
+
+Then, you can use it like this:
+
+```jsx title="MyComp"
+import { Button } from './Button.js';
+
+export const MyComp = () => (
+  <div>
+    <h1>Are you sure?</h1>
+
+    <div>
+      <Button>Yes<Button>
+      <Button $dark>No<Button>
+    </div>
+
+    <div>
+      <Button $light={{ from: 'md' }}>Retry<Button>
+    </div>
+  </div>
+)
+```

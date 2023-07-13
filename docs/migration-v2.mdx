@@ -1,0 +1,138 @@
+---
+title: styled-gen migration guide
+description: Migration guide. Updating from v1.x.x to v2
+---
+
+## styled-gen v2 migration guide
+
+This guide provides a comprehensive overview of the migration process from v1.x to v2.
+
+### breaking changes
+- Including a [`breakpoints`](/breakpoints-object) object in your theme is now required.
+- The `mq.[breakpoint]` method has been removed.
+- The `transitions` helper function is no longer accessible.
+  - The `ease` object is no longer accessible.
+  - The `durations` object is no longer accessible.
+- The `importFonts` helper function is no longer available.
+
+### Step by step guide
+
+#### 1. Breakpoints
+Now it is required to include a `breakpoints` object in your theme. For guidance on how to add this object, please refer to the [`breakpoints` object documentation](/breakpoints-object).
+
+#### 2. `mq[breakpoint]` method
+In v2 the `mq.[breakpoint]` method has been replaced with `mq.bp`. If you currently use the deprecated `mq.[breakpoint]` method in your project, it is highly recommended to create a middleware object to handle your breakpoints and update your imports accordingly.
+
+```typescript title="theme/helpers/mq.ts"
+import { mq as baseMq } from 'styled-gen';
+import { breakpoints } from '../breakpoints';
+
+export const mq = Object.keys(breakpoints).reduce(
+  (result, bp) => ({ ...result, [bp]: (style: any) => baseMq.bp(bp, style) }),
+  {}
+) as { [bp in keyof typeof breakpoints]: Function };
+```
+
+If you are utilizing named breakpoints instead of the shorthand format previously supported by earlier versions, here it is a more comprehensive example for your `mq` methods object:
+
+```typescript title="theme/helpers/mq.ts"
+import { mq as baseMq } from 'styled-gen';
+import { breakpoints } from '../breakpoints';
+
+const namedBreakpoints = {
+  mobile: 'xs',
+  tablet: 'sm',
+  tabletLandscape: 'md',
+  desktop: 'lg',
+}
+
+export const mq = Object.entries(namedBreakpoints).reduce(
+  (result, [bpName, bp]) => ({ ...result, [bpName]: (style: any) => baseMq.bp(bp, style) }),
+  {}
+) as { [bp in keyof typeof namedBreakpoints]: Function };
+```
+
+#### 3. `transitions` and constant objects
+The `transitions` helper function is no longer available. If you are currently using it in your project, it is highly recommended to create a custom function as a replacement. Additionally, you should add the `ease` and `durations` objects to your theme. Make sure to update your imports accordingly.
+
+```typescript title="theme/durations.ts"
+export const durations = {
+  animation: 500,
+  hover: 250,
+  long: 750,
+  short: 350
+};
+```
+
+```typescript title="theme/ease.ts"
+export const ease = {
+  inSine: 'cubic-bezier(0.47, 0, 0.745, 0.715)',
+  outSine: 'cubic-bezier(0.39, 0.575, 0.565, 1)',
+  inOutSine: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
+  inQuad: 'cubic-bezier(0.55, 0.085, 0.68, 0.53)',
+  outQuad: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+  inOutQuad: 'cubic-bezier(0.455, 0.03, 0.515, 0.955)',
+  inCubic: 'cubic-bezier(0.55, 0.055, 0.675, 0.19)',
+  outCubic: 'cubic-bezier(0.215, 0.61, 0.355, 1)',
+  inOutCubic: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+  inQuart: 'cubic-bezier(0.895, 0.03, 0.685, 0.22)',
+  outQuart: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+  inOutQuart: ' cubic-bezier(0.77, 0, 0.175, 1)',
+  inQuint: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)',
+  outQuint: 'cubic-bezier(0.23, 1, 0.32, 1)',
+  inOutQuint: 'cubic-bezier(0.86, 0, 0.07, 1)',
+  inExpo: 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+  outExpo: 'cubic-bezier(0.19, 1, 0.22, 1)',
+  inOutExpo: 'cubic-bezier(1, 0, 0, 1)',
+  inCirc: 'cubic-bezier(0.6, 0.04, 0.98, 0.335)',
+  outCirc: 'cubic-bezier(0.075, 0.82, 0.165, 1)',
+  inOutCirc: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)',
+  inBack: 'cubic-bezier(0.6, -0.28, 0.735, 0.045)',
+  outBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+  inOutBack: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+};
+```
+
+```typescript title="theme/index.ts"
+import { durations } from './durations';
+import { ease } from './ease';
+
+export const theme = {
+  // ...your theme
+
+  durations,
+  ease
+};
+```
+
+```typescript title="theme/helpers/transitions.ts"
+import { css } from 'styled-components';
+import { durations } from '../variables/durations';
+import { ease as eases } from '../variables/ease';
+
+const defaultDuration = 500;
+
+type Duration = keyof typeof durations;
+type Ease = keyof typeof eases;
+
+export const transitions =
+  (cssProps: string | string[], duration: Duration | number, ease: Ease) => (props: any) => {
+    const durationVal =
+      props?.theme?.durations?.[duration] || durations[duration as Duration] || duration || defaultDuration;
+    const transitionDuration = typeof durationVal === 'number' ? `${durationVal}ms` : durationVal;
+    const transitionTimingFunction = props?.theme?.ease?.[ease] || eases[ease as Ease] || ease;
+    const transitionProperty = Array.isArray(cssProps) ? cssProps.join(', ') : cssProps || 'all';
+
+    return css`
+      transition-duration: ${transitionDuration};
+      transition-property: ${transitionProperty};
+      transition-timing-function: ${transitionTimingFunction};
+    `;
+  };
+```
+
+#### 4. `importFonts`
+The `importFonts` helper function is no longer available. Given the variety of optimized font handling approaches available today, it is recommended to handle font importing in a way that aligns with your specific requirements and preferences. You have the flexibility to choose the font importing method that best suits your needs.
+
+### Possible issues
+If you encounter any issues or difficulties related to the migration from v1.x to v2, please feel free to open a GitHub issue. It will be addressed promptly. Your feedback and contributions are highly valued.

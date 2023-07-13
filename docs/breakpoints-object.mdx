@@ -1,0 +1,31 @@
+---
+title: Breakpoints object
+description: Breakpoints object explanation and example.
+---
+
+## Breakpoints object
+
+The `breakpoints` object is a mandatory requirement and must be passed to the theme. It is used to set the media query keys and corresponding breakpoint widths that will be utilized by the `generatedProps`, `mq`, and `variations` functions.
+
+The `breakpoints` object should have the following structure:
+
+```typescript
+{
+  [key: string]: number;
+}
+```
+
+The keys represent the media query labels or names, while the values are the corresponding breakpoint widths. The widths should be specified as `number` values, and the units applied will be `em`.
+
+By providing the `breakpoints` object in the theme, you enable the library's functions to utilize these defined breakpoints for responsive styling and other related operations.
+
+Please ensure that you pass the `breakpoints` object to the theme, adhering to the specified structure and data type requirements.
+
+```javascript title="breakpoints.js"
+export const breakpoints = {
+  lg: 76, // 1216px
+  md: 64, // 1024px
+  sm: 48, // 768px
+  xs: 0
+}
+```

@@ -1,0 +1,71 @@
+---
+title: mq
+description: mq explanation and examples.
+---
+Thank you for providing the complete content. Here's the revised version:
+
+## mq
+
+The `mq` object aggregates four functions that facilitate working with media queries. The function names are self-explanatory and offer intuitive usage:
+
+- `mq.between`: Generates a media query string for a range of breakpoints.
+- `mq.from`: Generates a media query string starting from a specific breakpoint.
+- `mq.upTo`: Generates a media query string up to a certain breakpoint.
+- `mq.bp`: Generates a media query string for an exact breakpoint.
+
+All string arguments can reference either a key from the [breakpoints object](/breakpoints-object) or a valid CSS value, such as `300px`. Numeric values are treated as `em` units. However, it's important to note that `mq.bp` **must match** a key from the breakpoints object.
+
+```typescript title"mq.between"
+between(breakpoint1: string | number, breakpoint2: string | number, style: any)
+```
+
+```typescript title"mq.from"
+from(breakpoint: string | number, style: any)
+```
+
+```typescript title"mq.upTo"
+upTo(breakpoint: string | number, style: any)
+```
+
+```typescript title"mq.bp"
+bp(breakpoint: string | number, style: any)
+```
+
+Usage example:
+
+```jsx title="MyComp.js"
+import { mq } from 'styled-gen';
+import styled, { css } from 'styled-components';
+
+const DivMd = styled.div`
+  display: none;
+
+  ${mq.bp('md', css`
+    display: block;
+  `)}
+`;
+
+const DivXs = styled.div`
+  display: block;
+
+  ${mq.bp('sm', css`
+    display: none;
+  `)}
+`;
+
+export const MyComp = () => (
+  <>
+    <DivMd>
+      <h3>This wrapper div will be visible only from the `md` breakpoint and above.</h3>
+    </DivMd>
+
+    <DivXs>
+      <h3>This wrapper div will only be visible below the `sm` breakpoint.</h3>
+    </DivXs>
+  </>
+);
+```
+
+In the example above, `mq.bp` is used to conditionally apply styles based on specific breakpoints. The `DivMd` component will only be displayed from the `md` breakpoint and above, while the `DivXs` component will only be visible below the `sm` breakpoint.
+
+Please review the revised version, and let me know if you have any further modifications or if there's anything else I can assist you with.

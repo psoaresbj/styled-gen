@@ -1,0 +1,102 @@
+---
+title: namedProps
+description: namedProps explanation and examples.
+---
+
+## namedProps
+
+`namedProps` are props that can be either boolean or an object with the following structure:
+```typescript
+{ from?: 'breakpoint', upTo?: 'breakpoint' }
+```
+The `'breakpoint'` must match one of the keys defined in the [breakpoints object](/breakpoints-object).
+
+To set the namedProps, you need to provide an array of objects to the generator, each with the following properties:
+
+| Property      | Type             | Description                                                                                                                                                                                                                                                                                      |
+| ------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `cssProp`     | `string`         | Must match an exact CSS property, such as `color` or `font-weight`. |
+| `helperFn`    | `function`       | A function that returns a CSS string. This should be used instead of `cssProp` only. |
+| `list`        | `object`         | A list of `{ [key]: value }` pairs, where the value represents a CSS value. For example, if the `cssProp` is `display`, the value can be `relative`. If you're using `helperFn` instead of `cssProp`, the value should match the function arguments separated by spaces. |
+| `prefix`      | `string`         | An optional prefix to be interpolated with the keys from the `list`. |
+| `units`       | `string`         | An optional unit value to be appended to any numeric value in the `list`. |
+
+Here's an example of namedProps in a `generator` object:
+
+```javascript title="generator.js"
+const margins = { large: 48, medium: 24, small: 16 };
+
+export const generator = {
+  namedProps: [
+    { cssProp: 'display', list: { hidden: 'none', visible: 'block' } },
+    { cssProp: 'text-align', list: { center: 'center', left: 'left', right: 'right' }, prefix: 'textAlign' },
+    { cssProp: 'margin-top', list: margins, prefix: 'topMargin', units: 'px' },
+    { cssProp: 'padding-top', list: margins, prefix: 'topPad', units: 'px' },
+  ],
+
+  // ...spaceProps
+
+  // ...variableProps
+};
+```
+
+Usage example (assuming the `transientPrefix` config property is set to `'$'`):
+
+```jsx title="MyComp.js"
+import { generateProps } from 'styled-gen';
+import styled from 'styled-components';
+
+const Div = styled.div`
+  // your CSS...
+
+  ${generateProps};
+`;
+
+export const MyComp = () => (
+  <Div $topPadLarge>
+    <h3>The `padding-top` for the wrapper div should be 48px</h3>
+
+    <Div $topMarginSmall $hidden={{ upTo: 'md' }}>
+      This content will be visible when the viewport matches the `md` breakpoint and should have a `margin-top` of 16px.
+    </Div>
+
+    <Div $hidden={{ from: 'md' }} $textAlignCenter>
+      This content will be visible only when the viewport is below the `md` breakpoint, and the `text-align` should be center.
+    </Div>
+  </Div>
+);
+```
+
+Alternatively, instead of a `cssProp`, a helper function can be passed to a namedProp in the generator, where the function arguments are separated by spaces:
+
+```javascript title="generator.js"
+import { css } from 'styled-components';
+
+const handleAlignment = (vAlign, hAlign) => css`
+  align-items: ${hAlign || vAlign};
+  display: flex;
+  flex-direction: column;
+  justify-content: ${vAlign};
+`;
+
+export const generator = {
+  namedProps: [
+    // ...namedProps
+    { helperFn: handleAlignment, list: { middle: 'center', topLeft: 'flex-start', bottomCenter: 'flex-end center' }, prefix: 'align' }
+  ],
+
+  // ...spaceProps
+
+  // ...variableProps
+};
+```
+
+Usage example:
+
+```jsx title="MyComp.js"
+{/* ... */}
+<Div $alignMiddle style={{ height: 500, padding: 16, width: 500 }}>
+  This content should be in the middle of the div.
+</Div>
+{/* ... */}
+```
