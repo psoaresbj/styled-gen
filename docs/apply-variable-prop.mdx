@@ -1,0 +1,66 @@
+---
+title: applyVariableProp
+description: applyVariableProp explanation, example and usage.
+---
+
+## applyVariableProp function
+
+The `applyVariableProp` function is a helper that simplifies the addition of properties to your styled-components as `vartiableProps`.
+
+`variableProps` are props that expect a non-boolean value and can be a `number`, `string`, or a media query object with the following structure:
+```typescript
+{ [breakpoint]: 'value' }
+```
+The `'breakpoint'`s must match the keys defined in your [breakpoints object](/breakpoints-object).
+
+### Arguments
+
+| Argument               | Type                                                       | Description                                       |
+| ---------------------- | ---------------------------------------------------------- | ------------------------------------------------- |
+| `propName`             | `string \| { [breakpoint]: any }`                          | A string to match a prop or a breakpoints object with values to apply via transformer fn |
+| `transformer`          | `Function`                                                 | A function that runs if there's a match           |
+| `options`              | `{ useTransientPrefix?: boolean }`                         | Config options object that overide config options |
+
+### Usage example
+
+(assuming we're using the config property `transientPrefix` as `'$'`)
+
+```jsx title="Col.js"
+import { applyVariableProp } from 'styled-gen';
+import styled, { css } from 'styled-components';
+
+const cols = 12;
+
+export const Col = styled.div`
+  display: block;
+
+  ${applyVariableProp(
+    'colSize',
+    (value: number) => css`
+      width: ${value / cols * 100}%;
+    `
+  )}
+`;
+```
+
+Then, you can use it like this:
+
+```jsx title="MyComp"
+import { Col } from './Col.js';
+
+export const MyComp = () => (
+  <section>
+    <Col $colSize={{ md: 6, xs: 12 }}>
+      This col will have a width of 100% up to `md` breakpoint, then 50%
+    </Col>
+
+    <Col $colSize={{ md: 6, xs: 8 }}>
+      This col will have a width of 66.66% up to `md` breakpoint, then 50%
+    </Col>
+
+    <Col $colSize={4}>
+      This col will always have a width of 33.33%
+    </Col>
+  </section>
+)
+```

@@ -1,0 +1,44 @@
+---
+title: Introduction
+description: What is styled-gen.
+---
+
+Welcome to styled-gen docs.
+
+## What is styled-gen?
+
+styled-gen is a collection of helper functions that simplify the integration of multiple styles as React props within your styled components. It provides shorthand properties for managing layout components without the need to style them separately.
+
+The library leverages the `theme` object passed into the styled-components `ThemeProvider` and incorporates a `generator` object within it. This `generator` object extends the available properties with support for media query syntax, enabling you to easily style your components when using them.
+
+In summary, styled-gen enhances the styling workflow by offering convenient props for styling components, all powered by the `theme` and `generator` objects within styled-components.
+
+`generateProps` usage example:
+
+```jsx title="MyComponent.jsx"
+import { generateProps } from 'styled-gen';
+import styled from 'styled-components';
+
+cons MyStyledComp = styled.div`
+  // your css...
+
+  ${generateProps};
+`;
+
+export const MyComponent = () => (
+  <div>
+    <MyStyledComp $tAlign={{ md: 'center', xs: 'left' }}>
+      Vestibulum auctor dapibus neque.
+    </MyStyledComp>
+  </div>
+)
+```
+
+## Helpers
+
+Besides the main [generateProps](/generateProps), there are also other (**very**) helpfull functions that may be used inside a styled template string component:
+
+- [mq](/mq)
+- [variations](/variations)
+- [applyVariableProp](/apply-variable-prop)
+- [applyNamedProp](/apply-named-prop)

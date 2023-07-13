@@ -1,0 +1,120 @@
+---
+title: TypeScript setup
+description: styled-gen with typescript usage.
+---
+
+## TypeScript
+
+This shows how to use TypeScript and styled-gen.
+
+There are no extra configuration needed on your project tools only some optional setup that makes your styled components way more easy to set props on and turns styled-gen config easier.
+
+### Import and use the setup object types.
+
+Use the provided types for generator object. This will allow your IDE to autocomplete the object.
+```TypeScript title="generator.ts"
+import type { Generator } from 'styled-gen';
+
+export const generator = {
+  //...
+} as const satisfies Generator;
+```
+
+Result:
+<Image src="/img/ts-04.png" alt="typescript IDE autocomplete example 4" />
+
+### Create reusable types
+
+- Create a common `Breakpoints` type from `breakpoints` object keys
+  ```TypeScript title="/types/common.ts"
+    import { breakpoints } from '../theme';
+
+    export type Breakpoints = keyof typeof breakpoints;
+  ```
+
+- Create a type for components with `generateProps`
+  ```TypeScript title="/types/GeneratedProps.ts"
+    import type { GeneratorProps, Variations } from 'styled-gen';
+
+    import { Breakpoints } from './common';
+    import { generator } from '../theme';
+
+    // Just provide the `namedProps` obj, the `variableProps` obj,
+    // the `breakpoints` keys and the `transientPrefix` string
+    // to the lib imported `GeneratorProps` type;
+    export type GeneratedProps = GeneratorProps<
+      typeof generateProps.namedProps,
+      typeof generateProps.variableProps,
+      Breakpoints,
+      '$'
+    >;
+    ```
+
+- Create a type for components with `variations`
+  ```TypeScript title="/types/VariationsProps.ts"
+    import type { Variations, VariationProps as BaseVariationProps } from 'styled-gen';
+
+    import { Breakpoints } from './common';
+
+    // Create a manipulator type that recieves the keys from a
+    // variation as type and a boolean for transient and pass them
+    // to the imported from lib `VariationsProps` along with the
+    // `breakpoints` keys and the transientString if `true`
+    export type VariationProps<T extends Variations, TP extends boolean | undefined = true> = BaseVariationProps<
+      T,
+      Breakpoints,
+      TP extends true ? '$' : TP
+    >;
+    ```
+
+Usage example:
+```tsx title="Div.tsx"
+import type { GeneratedProps } from './types/GeneratedProps';
+
+import { generateProps } from 'styled-gen';
+import styled from 'styled-components';
+
+export const Div = styled.div<GeneratedProps>`
+  // your css...
+
+  ${generateProps};
+`;
+```
+
+```tsx title="Button.tsx"
+import type { VariationProps } from './types/VariationProps';
+
+import { variations } from 'styled-gen';
+import styled, { css } from 'styled-components';
+
+const colorVariants = {
+  default: css`
+    background-color: #50are2;
+    color: #ffffff;
+  `,
+
+  dark: css`
+    background-color: #222222;
+    color: #ffffff;
+  `,
+
+  light: css`
+    background-color: #cccccc;
+    color: #222222;
+  `,
+}
+
+type ButtonType = VariationProps<typeof colorVariants>;
+
+export const Button = styled.button<ButtonType>`
+  height: 44px;
+  padding: 8px 24px;
+
+  ${variations(colorVariants)};
+`;
+```
+
+Result:
+<Image src="/img/ts-02.png" alt="typescript IDE autocomplete example 2" />
+<Image src="/img/ts-03.png" alt="typescript IDE autocomplete example 3" />
+<Image src="/img/ts-04.png" alt="typescript IDE autocomplete example 4" />

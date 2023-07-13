@@ -1,0 +1,100 @@
+---
+title: variableProps
+description: variableProps explanation and examples.
+---
+
+## variableProps
+
+`variableProps` are props that expect a non-boolean value and can be a `number`, `string`, or a media query object with the following structure:
+```typescript
+{ [breakpoint]: 'value' }
+```
+The `'breakpoint'`s must match the keys defined in your [breakpoints object](/breakpoints-object).
+
+To configure the `variableProps`, you need to provide an array of objects to the generator with the following properties:
+
+| Property      | Type             | Description                                                                                                                                                                                                                                                                                      |
+| ------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `cssProp`     | `string`         | Must be an exact CSS property like `color` or `font-weight`. |
+| `helperFn`    | `function`       | A function that returns a CSS string. Only required if you're using `helperFn` instead of `cssProp`. |
+| `list`        | `object`         | A list of `{ [key]: value }` pairs, where the value represents the CSS value to be used for the corresponding key. If using `helperFn`, the value should match the arguments of the function separated by a space character. |
+| `name`        | `string`         | A simple string that represents the prop name to use in the component. |
+| `units`       | `string`         | An optional unit value to be appended to any numeric values in the `list`. |
+
+Here's an example of `variableProps` in a generator object:
+
+```javascript title="generator.js"
+const colors = {
+  n01: '#f4f4f4',
+  n07: '#222222',
+  p01: '#50a2e2'
+};
+
+export const generator = {
+  // ...namedProps
+
+  // ...spaceProps
+
+  variableProps: [
+    { cssProp: 'text-align', list: { center: 'center', left: 'left', right: 'right' }, name: 'textAlign' },
+    { cssProp: 'background-color', list: colors, name: 'backgroundColor' }
+  ]
+};
+```
+
+### Usage example
+
+(assuming the `transientPrefix` config property is set to `'$'`):
+
+```jsx title="MyComp.js"
+import { generateProps } from 'styled-gen';
+import styled from 'styled-components';
+
+const Div = styled.div`
+  // your CSS...
+
+  ${generateProps};
+`;
+
+export const MyComp = () => (
+  <Div $backgroundColor="p01">
+    <h3>The background color of the wrapper div will be `#50a2e2`.</h3>
+
+    <Div $textAlign={{ md: 'left', xs: 'center' }}>
+      This content will be centered aligned from the `xs` media query and will change to left alignment above the `md` media query.
+    </Div>
+  </Div>
+);
+```
+
+Alternatively, instead of using a `cssProp`, you can pass a helper function to the `variableProps` in the generator. The function should return a CSS string and its arguments should be separated by a space character:
+
+```javascript title="generator.js"
+import { css } from 'styled-components';
+
+const handleSize = (height, width) => css`
+  height: ${height};
+  width: ${width || height};
+`;
+
+export const generator = {
+  // ...namedProps
+
+  // ...spaceProps
+
+  variableProps: [
+    // ...variableProps
+    { helperFn: handleSize, list: { large: '80vh 50vw', medium: 30, small: '400px 20' }, name: 'size', units: 'rem' }
+  ]
+};
+```
+
+Usage example:
+
+```jsx title="MyComp.js"
+  {/* ... */}
+  <Div $size={{ lg: '100vh 50%', md: 40, xs: 'small' }}>
+    This div should have a height of 400px and a width of 20rem up to the `md` breakpoint, a width and height of 40rem above that and up to the `lg` breakpoint, and finally a height of 100vh and a width of 50%.
+  </Div>
+  {/* ... */}
+```

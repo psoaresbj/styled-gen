@@ -1,0 +1,71 @@
+---
+title: applyNamedProp
+description: applyNamedProp explanation, example and usage.
+---
+
+## applyNamedProp function
+
+The `applyNamedProp` function is a helper that simplifies the addition of properties to your styled-components as `namedProps`.
+
+`namedProps` are props that can be boolean or an object with the following structure:
+
+```typescript
+{ from?: 'breakpoint', upTo?: 'breakpoint' }
+```
+
+The `'breakpoint'` must match one of the keys defined in the [breakpoints object](/breakpoints-object).
+
+### Arguments
+
+| Argument               | Type                                                       | Description                                       |
+| ---------------------- | ---------------------------------------------------------- | ------------------------------------------------- |
+| `styles`               | `string \| string[]`                                       | If an array, the first position would match the prop, the second is used as a default |
+| `options`              | `{ useTransientPrefix?: boolean }`                         | Config options object that overide config options |
+
+### Usage example
+
+(assuming we're using the config property `transientPrefix` as `'$'`)
+
+```jsx title="MyBlock.js"
+import { applyNamedProp } from 'styled-gen';
+import styled, { css } from 'styled-components';
+
+export const MyBlock = styled.div`
+  background-color: grey;
+  position: relative;
+
+  ${applyNamedProp(
+    'largePadding',
+    [
+      css`
+        padding: 5rem 3rem;
+      `,
+      css`
+        padding: 1.5rem;
+      `
+    ]
+  )}
+`;
+```
+
+Then, you can use it like this:
+
+```jsx title="MyComp"
+import { MyBlock } from './MyBlock.js';
+
+export const MyComp = () => (
+  <section>
+    <MyBlock>
+      This block will have a padding of `1.5rem`
+    </MyBlock>
+
+    <MyBlock $largePadding>
+      This block will have a padding of `5rem 3rem`
+    </MyBlock>
+
+    <MyBlock $largePadding={{ from: 'md' }}>
+      This block will have a padding of  `1.5rem` or `5rem 3rem` if the viewport will match the `md` breakpoint or higher.
+    </MyBlock>
+  </section>
+)
+```

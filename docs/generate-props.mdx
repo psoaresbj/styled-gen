@@ -1,0 +1,22 @@
+---
+title: generateProps
+description: generateProps explanation, example and usage.
+---
+
+## generateProps function
+
+`generateProps` injects the generator props into the styled component.
+
+```jsx title="MyComp.js"
+import { generateProps } from 'styled-gen';
+import styled from 'styled-components';
+
+export const MyComp = styled.div`
+  // your css...
+
+  ${generateProps};
+`;
+```
+
+For a comprehensive reference on the usage of props and how to add them to the `generator` object, please consult the dedicated documentation page for the [Generator Object](/generator-object).
+This documentation page will provide detailed information on the various prop types supported by the `generator`, along with instructions on how to configure and incorporate them effectively.

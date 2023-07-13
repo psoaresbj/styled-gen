@@ -1,0 +1,59 @@
+---
+title: Generator object
+description: Generator object explanation and example.
+---
+
+## Generator object
+
+The generator object is responsible for setting properties on components that include the `generateProps` function.
+It allows you to configure various properties that affect the behavior and appearance of the generated components.
+Please refer to the dedicated documentation page for the generator object to understand how to use and configure its properties effectively.
+
+### Generator example
+
+```javascript title="generator.js"
+import { flex, flexList } from './theme/utils'
+import { colors, fonts } from './themeVariables'
+
+export const generator = {
+  namedProps: [
+    { cssProp: 'color', list: colors },
+    { cssProp: 'font-size', list: fonts.weights },
+    { cssProp: 'text-align', list: { center: 'center', left: 'left', right: 'right' }, prefix: 'textAlign' }
+  ],
+
+  spaceProps: [
+    { prop: 'padding', units: 'px' },
+    { prop: 'margin', units: 'rem' }
+  ],
+
+  variableProps: [
+    { cssProp: 'display', list: { hidden: 'none', visible: 'flex' }, name: 'visibility' },
+    { helperFn: flex, list: flexList, name: 'flex' }
+  ]
+}
+```
+
+Then, just apply generateProps in a styled component:
+
+```jsx title="MyComp.js"
+import { generateProps } from 'styled-gen';
+import styled from 'styled-components';
+
+export const MyComp = styled.div`
+  // your css...
+
+  ${generateProps};
+`;
+```
+
+### Property types
+
+The generator requires the configuration of three different types of properties. For detailed information on each property, please refer to the dedicated documentation pages listed below:
+
+1. [namedProps](/named-props) - are mainly "boolean" props or a from/upTo object.\
+    `<MyComp $textAlignLeft />`
+2. [spaceProps](/space-props) - are shorthand props for layout spacing like margin and padding.\
+    `<MyComp $mt={2} $pl={{ md: 24, sm: 16, xs: 8 }} />`
+3. [variableProps](/variable-props) - are props that expect a non boolean value (string, number or a media query object with the same value types).\
+    `<MyComp $visibility={{ md: 'visible', xs: 'hidden' }} />`

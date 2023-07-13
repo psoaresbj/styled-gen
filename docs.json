@@ -1,0 +1,34 @@
+{
+  "name": "styled-gen",
+  "description": "Util functions to add your style-in-js cool supa'powers!",
+  "theme": "#36B9B9",
+  "sidebar": [
+    ["Introduction", "/"],
+    ["Getting started", [
+      ["Installation", "/installation"],
+      ["Setup", "/setup"],
+      ["Breakpoints object", "/breakpoints-object"],
+      ["Config object", "/config-object"],
+      ["Generator object", "/generator-object"]
+    ]],
+    ["Generator", [
+     ["namedProps", "/named-props"],
+     ["spaceProps", "/space-props"],
+     ["variableProps", "/variable-props"]
+    ]],
+    ["Helpers", [
+      ["generateProps", "/generate-props"],
+      ["mq", "/mq"],
+      ["variations", "/variations"],
+      ["applyVariableProp", "/apply-variable-prop"],
+      ["applyNamedProp", "/apply-named-prop"]
+    ]],
+    ["TypeScript", [
+      ["Setup", "/typescript-setup"],
+      ["Other types", "/typescript-other"]
+    ]],
+    ["Resources", [
+      ["Migration guide to V2", ["/migration-v2"]]
+    ]]
+  ]
+}
