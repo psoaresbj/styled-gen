@@ -1,8 +1,15 @@
 {
-  "short_name": "styled-gen",
-  "name": "styled-gen",
-  "start_url": "./index.html",
+  "short_name": "styled-gen-examples",
+  "name": "styled-gen examples",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ff5c00",
   "background_color": "#ffffff"
 }
