@@ -15,7 +15,8 @@ export const parseVariableProps = (theme?: Theme, props?: { [key: string]: any }
     const list = getList(variableProp?.list, theme) as { [key: string]: string | number };
     const { cssProp, helperFn, name: nameWithoutTransient, units: variablePropUnits } = variableProp;
 
-    const units = variablePropUnits || configUnits;
+    const units =
+      typeof variablePropUnits !== 'string' && variablePropUnits !== false ? configUnits : variablePropUnits;
 
     const name = `${transientPrefix}${nameWithoutTransient}`;
 

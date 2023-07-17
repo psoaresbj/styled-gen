@@ -2,7 +2,7 @@ import type * as CSS from 'csstype';
 
 type MqBoolAllowedMethods = 'from' | 'upTo';
 
-export type Units = 'rem' | 'em' | 'px' | '%';
+export type Units = 'rem' | 'em' | 'px' | '%' | boolean;
 export type Truthy = boolean | 'true' | 'false';
 
 export type InterpolatedStyle = TemplateStringsArray | Function | string[] | string;
