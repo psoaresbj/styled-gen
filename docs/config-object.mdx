@@ -9,7 +9,8 @@ The config object is optional and can be passed to the theme. It is used to set 
 
 ```javascript title="theme.js"
 const config  = {
-  transientPrefix: '$'
+  transientPrefix: '$',
+  units: 'rem'
 }
 
 export const theme = {
@@ -23,3 +24,4 @@ Full config properties list:
 | Property                   | Default      | Description                                                                                                                                                                                                                                                                                      |
 | ---------------------------| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `transientPrefix`          | `''`         | By passing a prefix to the `generateProps` function, you can match the forwardProps prevention behavior. The commonly used prefix with styled-components is the dollar sign (`$`). This prefix helps to differentiate between transient props that are intended for styling and the regular component props.  For more information and specific details about using prefixes with styled-components, please refer to the [styled-components documentation](https://styled-components.com/docs/api#transient-props). The documentation will provide further insights into how to effectively utilize prefixes, such as the dollar sign, to handle transient props and prevent them from being passed down to the underlying DOM element. |
+| `units`                    | `px`         | Set the default units for numerical values. Don't forget to use `units: false` in your generator if you need to ensure that the final value would be a number in that specific property. |

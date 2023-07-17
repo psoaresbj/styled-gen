@@ -16,7 +16,7 @@ export const parseNamedProps = (theme?: Theme, props?: { [key: string]: any }): 
     const list = getList(namedProp?.list, theme);
     const { cssProp, helperFn, units: namedPropUnits } = namedProp;
 
-    const units = namedPropUnits || configUnits;
+    const units = typeof namedPropUnits !== 'string' && namedPropUnits !== false ? configUnits : namedPropUnits;
 
     return [
       ...result,

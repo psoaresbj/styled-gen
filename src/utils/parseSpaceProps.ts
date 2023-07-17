@@ -25,7 +25,7 @@ export const parseSpaceProps = (theme?: Theme, props?: { [key: string]: any }): 
     const list = getList(spaceProp?.list, theme) as { [key: string]: string | number };
     const firstChar = prop.substring(0, 1);
 
-    const units = spacePropUnits || configUnits;
+    const units = typeof spacePropUnits !== 'string' && spacePropUnits !== false ? configUnits : spacePropUnits;
 
     return [
       ...result,
